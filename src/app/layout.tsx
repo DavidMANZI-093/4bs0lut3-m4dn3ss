@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { AuthProvider } from '@/contexts/AuthContext'
+import SessionTimeoutHandler from '@/components/SessionTimeoutHandler'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Five Systems Challenge',
-  description: 'A comprehensive backend implementation featuring 5 distinct systems: Ticketing, Basketball Scoreboard, E-commerce, Subscription, and Live Chat.',
+  title: '4bs0lut3-m4dn3ss Basketball Platform',
+  description: 'Professional basketball team platform with ticketing, scoreboard, store, membership, and live chat systems.',
 }
 
 export default function RootLayout({
@@ -16,7 +18,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <AuthProvider>
+          {children}
+          <SessionTimeoutHandler />
+        </AuthProvider>
+      </body>
     </html>
   )
 }
