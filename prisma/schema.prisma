@@ -1,0 +1,82 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 1. Ticketing System
+model Ticket {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  status      TicketStatus @default(OPEN)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("tickets")
+}
+
+enum TicketStatus {
+  OPEN
+  CLOSED
+}
+
+// 2. Basketball Scoreboard
+model Score {
+  id     String @id @default(cuid())
+  teamA  Int    @default(0)
+  teamB  Int    @default(0)
+  updatedAt DateTime @updatedAt
+
+  @@map("scores")
+}
+
+// 3. E-commerce System
+model Product {
+  id       String @id @default(cuid())
+  name     String
+  price    Float
+  imageUrl String?
+  createdAt DateTime @default(now())
+  
+  cartItems CartItem[]
+
+  @@map("products")
+}
+
+model CartItem {
+  id        String @id @default(cuid())
+  productId String
+  quantity  Int    @default(1)
+  createdAt DateTime @default(now())
+  
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("cart_items")
+}
+
+// 4. Subscription System
+model Subscriber {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  createdAt DateTime @default(now())
+
+  @@map("subscribers")
+}
+
+// 5. Live Stream Chat
+model Message {
+  id        String   @id @default(cuid())
+  sender    String
+  content   String
+  createdAt DateTime @default(now())
+
+  @@map("messages")
+}
