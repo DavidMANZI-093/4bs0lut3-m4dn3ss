@@ -80,3 +80,38 @@ model Message {
 
   @@map("messages")
 }
+
+// 6. Authentication System
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  role         UserRole @default(ADMIN)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  lastLogin    DateTime?
+  
+  sessions Session[]
+
+  @@map("users")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  userId       String
+  token        String   @unique
+  createdAt    DateTime @default(now())
+  expiresAt    DateTime
+  lastActivity DateTime @default(now())
+  ipAddress    String?
+  userAgent    String?
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+enum UserRole {
+  ADMIN
+  DEVELOPER
+}

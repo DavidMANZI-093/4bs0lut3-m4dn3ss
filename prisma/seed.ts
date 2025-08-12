@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { AuthService } from '../src/lib/auth'
 
 const prisma = new PrismaClient()
 
@@ -6,6 +7,8 @@ async function main() {
   console.log('🌱 Starting database seed...')
 
   // Clear existing data
+  await prisma.session.deleteMany()
+  await prisma.user.deleteMany()
   await prisma.message.deleteMany()
   await prisma.cartItem.deleteMany()
   await prisma.product.deleteMany()
@@ -13,7 +16,21 @@ async function main() {
   await prisma.ticket.deleteMany()
   await prisma.score.deleteMany()
 
-  // 1. Seed Tickets
+  // 1. Seed Authentication Users
+  console.log('🔐 Seeding authentication users...')
+  const adminUserId = await AuthService.createUser(
+    'admin@4bs0lut3-m4dn3ss.com',
+    'admin123',
+    'ADMIN'
+  )
+  const devUserId = await AuthService.createUser(
+    'dev@4bs0lut3-m4dn3ss.com',
+    'dev123',
+    'DEVELOPER'
+  )
+  console.log(`✅ Created 2 users (admin & developer)`)
+
+  // 2. Seed Tickets
   console.log('📋 Seeding tickets...')
   const tickets = await prisma.ticket.createMany({
     data: [
@@ -46,7 +63,7 @@ async function main() {
   })
   console.log(`✅ Created ${tickets.count} tickets`)
 
-  // 2. Seed Basketball Score
+  // 3. Seed Basketball Score
   console.log('🏀 Seeding basketball score...')
   const score = await prisma.score.create({
     data: {
@@ -56,7 +73,7 @@ async function main() {
   })
   console.log(`✅ Created basketball score: Team A: ${score.teamA}, Team B: ${score.teamB}`)
 
-  // 3. Seed Products
+  // 4. Seed Products
   console.log('🛍️ Seeding products...')
   const products = await prisma.product.createMany({
     data: [
@@ -94,7 +111,7 @@ async function main() {
   })
   console.log(`✅ Created ${products.count} products`)
 
-  // 4. Seed Cart Items (sample cart)
+  // 5. Seed Cart Items (sample cart)
   console.log('🛒 Seeding cart items...')
   const allProducts = await prisma.product.findMany()
   const cartItems = await prisma.cartItem.createMany({
@@ -115,7 +132,7 @@ async function main() {
   })
   console.log(`✅ Created ${cartItems.count} cart items`)
 
-  // 5. Seed Subscribers
+  // 6. Seed Subscribers
   console.log('📧 Seeding subscribers...')
   const subscribers = await prisma.subscriber.createMany({
     data: [
@@ -139,7 +156,7 @@ async function main() {
   })
   console.log(`✅ Created ${subscribers.count} subscribers`)
 
-  // 6. Seed Chat Messages
+  // 7. Seed Chat Messages
   console.log('💬 Seeding chat messages...')
   const messages = await prisma.message.createMany({
     data: [
@@ -172,15 +189,19 @@ async function main() {
   console.log(`✅ Created ${messages.count} chat messages`)
 
   console.log('🎉 Database seeding completed successfully!')
-  
+
   // Print summary
   console.log('\n📊 Seed Summary:')
+  console.log(`- Users: 2 (admin & developer)`)
   console.log(`- Tickets: ${tickets.count}`)
   console.log(`- Basketball Score: Team A: ${score.teamA}, Team B: ${score.teamB}`)
   console.log(`- Products: ${products.count}`)
   console.log(`- Cart Items: ${cartItems.count}`)
   console.log(`- Subscribers: ${subscribers.count}`)
   console.log(`- Chat Messages: ${messages.count}`)
+  console.log('\n🔐 Authentication Credentials:')
+  console.log('- Admin: admin@4bs0lut3-m4dn3ss.com / admin123')
+  console.log('- Developer: dev@4bs0lut3-m4dn3ss.com / dev123')
 }
 
 main()
