@@ -1,200 +1,193 @@
+import PublicNavigation from '@/components/PublicNavigation';
+import Link from 'next/link';
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gray-50">
-      {/* Header Section */}
-      <div className="bg-gradient-to-r from-orange-600 to-blue-600 text-white">
-        <div className="container mx-auto px-4 py-12">
+    <div className="min-h-screen bg-gray-50">
+      <PublicNavigation />
+      
+      {/* Hero Section */}
+      <div className="bg-gradient-to-br from-orange-900 via-orange-800 to-red-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
-            <h1 className="text-5xl font-bold mb-4">
-              🏀 4bs0lut3-m4dn3ss
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+              Welcome to 4bs0lut3-m4dn3ss
             </h1>
-            <p className="text-xl mb-2">Basketball Team Platform</p>
-            <p className="text-lg opacity-90 max-w-2xl mx-auto">
-              Complete team management platform with scoreboard, ticketing, fan memberships, merchandise, and live streaming
+            <p className="text-xl md:text-2xl text-orange-200 mb-8 max-w-3xl mx-auto">
+              Your ultimate basketball team platform featuring live scores, tickets, merchandise, memberships, and fan chat
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/scoreboard/public"
+                className="bg-white text-orange-900 px-8 py-3 rounded-lg font-semibold hover:bg-orange-50 transition-colors"
+              >
+                🏀 Watch Live Game
+              </Link>
+              <Link
+                href="/tickets/public"
+                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-900 transition-colors"
+              >
+                🎫 Get Tickets
+              </Link>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-12">
-        {/* Systems Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          <div className="bg-white p-6 rounded-lg card-shadow border border-gray-200 hover:border-blue-300 transition-colors">
-            <div className="flex items-center mb-4">
-              <span className="text-2xl mr-3">🎫</span>
-              <h2 className="text-xl font-semibold text-gray-900">Game Ticketing</h2>
-            </div>
-            <p className="text-gray-700 mb-4">Book tickets to basketball games and manage reservations</p>
-            <div className="space-y-2 text-sm">
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <code className="text-gray-800">GET /api/tickets</code> - List tickets
-              </div>
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <code className="text-gray-800">POST /api/tickets</code> - Create ticket
-              </div>
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <code className="text-gray-800">PATCH /api/tickets/[id]</code> - Update status
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white p-6 rounded-lg card-shadow border border-gray-200 hover:border-orange-300 transition-colors">
-            <div className="flex items-center mb-4">
-              <span className="text-2xl mr-3">🏀</span>
-              <h2 className="text-xl font-semibold text-gray-900">Live Scoreboard</h2>
-            </div>
-            <p className="text-gray-700 mb-4">Real-time game scores with public view and admin controls</p>
-            <div className="space-y-2 text-sm">
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <code className="text-gray-800">GET /api/score</code> - Get current score
-              </div>
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <code className="text-gray-800">POST /api/score/update</code> - Update score
-              </div>
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <code className="text-gray-800">POST /api/score</code> - Reset score
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white p-6 rounded-lg card-shadow border border-gray-200 hover:border-purple-300 transition-colors">
-            <div className="flex items-center mb-4">
-              <span className="text-2xl mr-3">🛍️</span>
-              <h2 className="text-xl font-semibold text-gray-900">Team Merchandise</h2>
-            </div>
-            <p className="text-gray-700 mb-4">Official team gear, jerseys, and fan merchandise store</p>
-            <div className="space-y-2 text-sm">
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <code className="text-gray-800">GET /api/products</code> - List products
-              </div>
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <code className="text-gray-800">GET /api/cart</code> - View cart
-              </div>
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <code className="text-gray-800">POST /api/cart/add</code> - Add to cart
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white p-6 rounded-lg card-shadow border border-gray-200 hover:border-green-300 transition-colors">
-            <div className="flex items-center mb-4">
-              <span className="text-2xl mr-3">⭐</span>
-              <h2 className="text-xl font-semibold text-gray-900">Fan Membership</h2>
-            </div>
-            <p className="text-gray-700 mb-4">Premium fan memberships with exclusive benefits and perks</p>
-            <div className="space-y-2 text-sm">
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <code className="text-gray-800">POST /api/subscribe</code> - Subscribe email
-              </div>
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <code className="text-gray-800">GET /api/subscribers</code> - List subscribers
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white p-6 rounded-lg card-shadow border border-gray-200 hover:border-indigo-300 transition-colors">
-            <div className="flex items-center mb-4">
-              <span className="text-2xl mr-3">�</span>
-              <h2 className="text-xl font-semibold text-gray-900">Live Streaming</h2>
-            </div>
-            <p className="text-gray-700 mb-4">Live game streams with real-time fan chat and interaction</p>
-            <div className="space-y-2 text-sm">
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <code className="text-gray-800">WebSocket Events:</code>
-              </div>
-              <div className="flex items-center ml-4">
-                <span className="w-1 h-1 bg-gray-400 rounded-full mr-2"></span>
-                <code className="text-gray-800">message:send</code> - Send message
-              </div>
-              <div className="flex items-center ml-4">
-                <span className="w-1 h-1 bg-gray-400 rounded-full mr-2"></span>
-                <code className="text-gray-800">message:broadcast</code> - Receive messages
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-orange-50 to-blue-50 p-6 rounded-lg border-2 border-orange-200 card-shadow">
-            <div className="flex items-center mb-4">
-              <span className="text-2xl mr-3">🏆</span>
-              <h2 className="text-xl font-semibold text-orange-900">Team Platform</h2>
-            </div>
-            <div className="space-y-3 text-sm text-orange-800">
-              <div className="flex items-center">
-                <span className="w-6 h-6 bg-orange-200 text-orange-900 rounded-full flex items-center justify-center text-xs font-bold mr-3">🎫</span>
-                Book game tickets online
-              </div>
-              <div className="flex items-center">
-                <span className="w-6 h-6 bg-orange-200 text-orange-900 rounded-full flex items-center justify-center text-xs font-bold mr-3">⭐</span>
-                Join premium fan membership
-              </div>
-              <div className="flex items-center">
-                <span className="w-6 h-6 bg-orange-200 text-orange-900 rounded-full flex items-center justify-center text-xs font-bold mr-3">🛍️</span>
-                Shop official team merchandise
-              </div>
-              <div className="flex items-center">
-                <span className="w-6 h-6 bg-orange-200 text-orange-900 rounded-full flex items-center justify-center text-xs font-bold mr-3">📺</span>
-                Watch live games with chat
-              </div>
-            </div>
-          </div>
+      {/* Features Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            Everything You Need for Basketball
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            From live game updates to exclusive merchandise, we've got your basketball experience covered
+          </p>
         </div>
 
-        {/* Quick Commands Section */}
-        <div className="bg-white rounded-lg card-shadow border border-gray-200 p-8">
-          <h3 className="text-2xl font-semibold text-gray-900 mb-6 text-center">Quick Commands</h3>
-          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-3">
-                <div className="flex items-center">
-                  <span className="text-blue-600 font-mono font-semibold">npm run db:push</span>
-                  <span className="text-gray-600 ml-3">- Push schema to database</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="text-blue-600 font-mono font-semibold">npm run db:seed</span>
-                  <span className="text-gray-600 ml-3">- Seed with sample data</span>
-                </div>
-              </div>
-              <div className="space-y-3">
-                <div className="flex items-center">
-                  <span className="text-blue-600 font-mono font-semibold">npm run socket</span>
-                  <span className="text-gray-600 ml-3">- Start WebSocket server</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="text-blue-600 font-mono font-semibold">npm run dev</span>
-                  <span className="text-gray-600 ml-3">- Start Next.js server</span>
-                </div>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Live Scoreboard */}
+          <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+            <div className="text-4xl mb-4">🏀</div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">Live Scoreboard</h3>
+            <p className="text-gray-600 mb-4">
+              Follow every game with real-time score updates and live game information.
+            </p>
+            <Link 
+              href="/scoreboard/public" 
+              className="inline-block bg-orange-600 text-white px-4 py-2 rounded-md hover:bg-orange-700 transition-colors"
+            >
+              Watch Live →
+            </Link>
           </div>
-        </div>
 
-        {/* Demo Link */}
-        <div className="text-center mt-8">
-          <a
-            href="/demo"
-            className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors mr-4"
-          >
-            🚀 Try Interactive Demo
-          </a>
-          <div className="inline-flex items-center px-4 py-2 bg-green-100 border border-green-300 rounded-full">
-            <span className="w-3 h-3 bg-green-500 rounded-full mr-2"></span>
-            <span className="text-green-800 font-semibold">All Systems Operational</span>
+          {/* Game Tickets */}
+          <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+            <div className="text-4xl mb-4">🎫</div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">Game Tickets</h3>
+            <p className="text-gray-600 mb-4">
+              Secure your seats for upcoming games with our easy ticket purchasing system.
+            </p>
+            <Link 
+              href="/tickets/public" 
+              className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+            >
+              Buy Tickets →
+            </Link>
+          </div>
+
+          {/* Team Store */}
+          <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+            <div className="text-4xl mb-4">🛍️</div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">Team Store</h3>
+            <p className="text-gray-600 mb-4">
+              Show your team spirit with official merchandise and exclusive gear.
+            </p>
+            <Link 
+              href="/store/public" 
+              className="inline-block bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors"
+            >
+              Shop Now →
+            </Link>
+          </div>
+
+          {/* Fan Memberships */}
+          <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+            <div className="text-4xl mb-4">👥</div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">Fan Memberships</h3>
+            <p className="text-gray-600 mb-4">
+              Join our exclusive membership program for special perks and benefits.
+            </p>
+            <Link 
+              href="/membership/public" 
+              className="inline-block bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition-colors"
+            >
+              Join Now →
+            </Link>
+          </div>
+
+          {/* Live Chat */}
+          <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+            <div className="text-4xl mb-4">💬</div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">Live Game Chat</h3>
+            <p className="text-gray-600 mb-4">
+              Connect with fellow fans during games with our live chat feature.
+            </p>
+            <Link 
+              href="/chat/public" 
+              className="inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors"
+            >
+              Join Chat →
+            </Link>
+          </div>
+
+          {/* Admin Access */}
+          <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow border-2 border-orange-200">
+            <div className="text-4xl mb-4">⚙️</div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">Admin Access</h3>
+            <p className="text-gray-600 mb-4">
+              Team administrators can manage all systems from dedicated admin panels.
+            </p>
+            <Link 
+              href="/auth/login" 
+              className="inline-block bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition-colors"
+            >
+              Admin Login →
+            </Link>
           </div>
         </div>
       </div>
-    </main>
-  )
+
+      {/* Stats Section */}
+      <div className="bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Platform Statistics
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-orange-600 mb-2">5</div>
+              <div className="text-gray-600">Integrated Systems</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-orange-600 mb-2">15+</div>
+              <div className="text-gray-600">API Endpoints</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-orange-600 mb-2">Real-time</div>
+              <div className="text-gray-600">Live Updates</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-orange-600 mb-2">24/7</div>
+              <div className="text-gray-600">System Uptime</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="text-center">
+            <div className="text-2xl font-bold text-orange-500 mb-4">
+              🏀 4bs0lut3-m4dn3ss
+            </div>
+            <p className="text-gray-400 mb-6">
+              Professional basketball team platform with integrated systems
+            </p>
+            <div className="flex justify-center space-x-6">
+              <Link href="/scoreboard/public" className="text-gray-400 hover:text-white">Live Scores</Link>
+              <Link href="/tickets/public" className="text-gray-400 hover:text-white">Tickets</Link>
+              <Link href="/store/public" className="text-gray-400 hover:text-white">Store</Link>
+              <Link href="/membership/public" className="text-gray-400 hover:text-white">Memberships</Link>
+              <Link href="/chat/public" className="text-gray-400 hover:text-white">Chat</Link>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
 }
