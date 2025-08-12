@@ -2,14 +2,17 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gray-50">
       {/* Header Section */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="container mx-auto px-4 py-8">
-          <h1 className="text-4xl font-bold text-gray-900 text-center mb-2">
-            Five Systems Challenge
-          </h1>
-          <p className="text-lg text-gray-600 text-center max-w-2xl mx-auto">
-            A comprehensive backend implementation featuring 5 distinct systems built with Next.js, TypeScript, and PostgreSQL
-          </p>
+      <div className="bg-gradient-to-r from-orange-600 to-blue-600 text-white">
+        <div className="container mx-auto px-4 py-12">
+          <div className="text-center">
+            <h1 className="text-5xl font-bold mb-4">
+              🏀 4bs0lut3-m4dn3ss
+            </h1>
+            <p className="text-xl mb-2">Basketball Team Platform</p>
+            <p className="text-lg opacity-90 max-w-2xl mx-auto">
+              Complete team management platform with scoreboard, ticketing, fan memberships, merchandise, and live streaming
+            </p>
+          </div>
         </div>
       </div>
 
@@ -20,9 +23,9 @@ export default function Home() {
           <div className="bg-white p-6 rounded-lg card-shadow border border-gray-200 hover:border-blue-300 transition-colors">
             <div className="flex items-center mb-4">
               <span className="text-2xl mr-3">🎫</span>
-              <h2 className="text-xl font-semibold text-gray-900">Ticketing System</h2>
+              <h2 className="text-xl font-semibold text-gray-900">Game Ticketing</h2>
             </div>
-            <p className="text-gray-700 mb-4">Manage support tickets with status tracking and updates</p>
+            <p className="text-gray-700 mb-4">Book tickets to basketball games and manage reservations</p>
             <div className="space-y-2 text-sm">
               <div className="flex items-center">
                 <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
@@ -42,9 +45,9 @@ export default function Home() {
           <div className="bg-white p-6 rounded-lg card-shadow border border-gray-200 hover:border-orange-300 transition-colors">
             <div className="flex items-center mb-4">
               <span className="text-2xl mr-3">🏀</span>
-              <h2 className="text-xl font-semibold text-gray-900">Basketball Scoreboard</h2>
+              <h2 className="text-xl font-semibold text-gray-900">Live Scoreboard</h2>
             </div>
-            <p className="text-gray-700 mb-4">Real-time score tracking with WebSocket updates</p>
+            <p className="text-gray-700 mb-4">Real-time game scores with public view and admin controls</p>
             <div className="space-y-2 text-sm">
               <div className="flex items-center">
                 <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
@@ -64,9 +67,9 @@ export default function Home() {
           <div className="bg-white p-6 rounded-lg card-shadow border border-gray-200 hover:border-purple-300 transition-colors">
             <div className="flex items-center mb-4">
               <span className="text-2xl mr-3">🛍️</span>
-              <h2 className="text-xl font-semibold text-gray-900">E-commerce</h2>
+              <h2 className="text-xl font-semibold text-gray-900">Team Merchandise</h2>
             </div>
-            <p className="text-gray-700 mb-4">Product catalog and shopping cart functionality</p>
+            <p className="text-gray-700 mb-4">Official team gear, jerseys, and fan merchandise store</p>
             <div className="space-y-2 text-sm">
               <div className="flex items-center">
                 <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
@@ -85,10 +88,10 @@ export default function Home() {
 
           <div className="bg-white p-6 rounded-lg card-shadow border border-gray-200 hover:border-green-300 transition-colors">
             <div className="flex items-center mb-4">
-              <span className="text-2xl mr-3">📧</span>
-              <h2 className="text-xl font-semibold text-gray-900">Subscription System</h2>
+              <span className="text-2xl mr-3">⭐</span>
+              <h2 className="text-xl font-semibold text-gray-900">Fan Membership</h2>
             </div>
-            <p className="text-gray-700 mb-4">Email subscription management with validation</p>
+            <p className="text-gray-700 mb-4">Premium fan memberships with exclusive benefits and perks</p>
             <div className="space-y-2 text-sm">
               <div className="flex items-center">
                 <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
@@ -103,10 +106,10 @@ export default function Home() {
 
           <div className="bg-white p-6 rounded-lg card-shadow border border-gray-200 hover:border-indigo-300 transition-colors">
             <div className="flex items-center mb-4">
-              <span className="text-2xl mr-3">💬</span>
-              <h2 className="text-xl font-semibold text-gray-900">Live Stream Chat</h2>
+              <span className="text-2xl mr-3">�</span>
+              <h2 className="text-xl font-semibold text-gray-900">Live Streaming</h2>
             </div>
-            <p className="text-gray-700 mb-4">Real-time chat with message persistence</p>
+            <p className="text-gray-700 mb-4">Live game streams with real-time fan chat and interaction</p>
             <div className="space-y-2 text-sm">
               <div className="flex items-center">
                 <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
@@ -123,27 +126,27 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="bg-blue-50 p-6 rounded-lg border-2 border-blue-200 card-shadow">
+          <div className="bg-gradient-to-br from-orange-50 to-blue-50 p-6 rounded-lg border-2 border-orange-200 card-shadow">
             <div className="flex items-center mb-4">
-              <span className="text-2xl mr-3">🚀</span>
-              <h2 className="text-xl font-semibold text-blue-900">Getting Started</h2>
+              <span className="text-2xl mr-3">🏆</span>
+              <h2 className="text-xl font-semibold text-orange-900">Team Platform</h2>
             </div>
-            <div className="space-y-3 text-sm text-blue-800">
+            <div className="space-y-3 text-sm text-orange-800">
               <div className="flex items-center">
-                <span className="w-6 h-6 bg-blue-200 text-blue-900 rounded-full flex items-center justify-center text-xs font-bold mr-3">1</span>
-                Run database migrations
+                <span className="w-6 h-6 bg-orange-200 text-orange-900 rounded-full flex items-center justify-center text-xs font-bold mr-3">🎫</span>
+                Book game tickets online
               </div>
               <div className="flex items-center">
-                <span className="w-6 h-6 bg-blue-200 text-blue-900 rounded-full flex items-center justify-center text-xs font-bold mr-3">2</span>
-                Seed with sample data
+                <span className="w-6 h-6 bg-orange-200 text-orange-900 rounded-full flex items-center justify-center text-xs font-bold mr-3">⭐</span>
+                Join premium fan membership
               </div>
               <div className="flex items-center">
-                <span className="w-6 h-6 bg-blue-200 text-blue-900 rounded-full flex items-center justify-center text-xs font-bold mr-3">3</span>
-                Start WebSocket server
+                <span className="w-6 h-6 bg-orange-200 text-orange-900 rounded-full flex items-center justify-center text-xs font-bold mr-3">🛍️</span>
+                Shop official team merchandise
               </div>
               <div className="flex items-center">
-                <span className="w-6 h-6 bg-blue-200 text-blue-900 rounded-full flex items-center justify-center text-xs font-bold mr-3">4</span>
-                Test APIs with Postman
+                <span className="w-6 h-6 bg-orange-200 text-orange-900 rounded-full flex items-center justify-center text-xs font-bold mr-3">📺</span>
+                Watch live games with chat
               </div>
             </div>
           </div>

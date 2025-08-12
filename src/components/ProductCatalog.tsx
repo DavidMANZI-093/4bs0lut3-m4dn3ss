@@ -90,7 +90,7 @@ export default function ProductCatalog() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-gray-900">🛍️ Product Catalog</h2>
+        <h2 className="text-2xl font-bold text-gray-900">🛍️ Team Merchandise Store</h2>
         <button
           onClick={() => setShowCart(!showCart)}
           className="relative bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"

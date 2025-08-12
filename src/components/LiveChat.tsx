@@ -112,7 +112,7 @@ export default function LiveChat() {
     <div className="bg-white rounded-lg card-shadow border border-gray-200 p-6 h-96 flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-bold text-gray-900">💬 Live Stream Chat</h2>
+        <h2 className="text-2xl font-bold text-gray-900">📺 Live Game Stream Chat</h2>
         <div className="flex items-center space-x-2">
           <div className={`w-3 h-3 rounded-full ${isConnected ? 'bg-green-500' : 'bg-red-500'}`}></div>
           <span className="text-sm text-gray-600">

@@ -18,28 +18,28 @@ async function main() {
   const tickets = await prisma.ticket.createMany({
     data: [
       {
-        title: 'Login page not loading',
-        description: 'Users are reporting that the login page shows a blank screen when accessed from mobile devices.',
+        title: 'Season Opener vs Lakers',
+        description: 'Premium courtside seats for the season opening game against Lakers. Includes pre-game meet & greet.',
         status: 'OPEN'
       },
       {
-        title: 'Payment processing error',
-        description: 'Credit card payments are failing with error code 500. Affects approximately 15% of transactions.',
+        title: 'Championship Finals Game 3',
+        description: 'Upper deck seats for the championship finals. Historic game with playoff atmosphere.',
         status: 'OPEN'
       },
       {
-        title: 'Database backup issue',
-        description: 'Automated database backups have been failing since last Tuesday. Need immediate attention.',
+        title: 'Rivalry Game vs Warriors',
+        description: 'Mid-court seats for the biggest rivalry game of the season. Sold out venue expected.',
         status: 'CLOSED'
       },
       {
-        title: 'Email notifications not sending',
-        description: 'Order confirmation emails are not being sent to customers after successful purchases.',
+        title: 'Family Night vs Celtics',
+        description: 'Family-friendly game with kids activities and player autograph session after the game.',
         status: 'OPEN'
       },
       {
-        title: 'Performance optimization request',
-        description: 'Dashboard loading time is too slow. Need to optimize queries and implement caching.',
+        title: 'Playoff Quarterfinals',
+        description: 'Lower bowl seats for the first playoff game. Includes team merchandise package.',
         status: 'CLOSED'
       }
     ]
@@ -61,34 +61,34 @@ async function main() {
   const products = await prisma.product.createMany({
     data: [
       {
-        name: 'Wireless Bluetooth Headphones',
-        price: 79.99,
-        imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400'
+        name: 'Official Team Jersey - Home',
+        price: 89.99,
+        imageUrl: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400'
       },
       {
-        name: 'Smart Fitness Watch',
+        name: 'Team Championship Cap',
+        price: 34.99,
+        imageUrl: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400'
+      },
+      {
+        name: 'Basketball Signed by Team',
         price: 199.99,
-        imageUrl: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400'
+        imageUrl: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400'
       },
       {
-        name: 'Portable Phone Charger',
-        price: 29.99,
-        imageUrl: 'https://images.unsplash.com/photo-1609592806596-4d8b5b5e7e0a?w=400'
+        name: 'Team Hoodie - Premium',
+        price: 79.99,
+        imageUrl: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400'
       },
       {
-        name: 'Mechanical Gaming Keyboard',
-        price: 149.99,
-        imageUrl: 'https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=400'
+        name: 'Official Team Shorts',
+        price: 49.99,
+        imageUrl: 'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=400'
       },
       {
-        name: 'USB-C Hub with HDMI',
-        price: 59.99,
-        imageUrl: 'https://images.unsplash.com/photo-1625842268584-8f3296236761?w=400'
-      },
-      {
-        name: 'Wireless Mouse',
-        price: 39.99,
-        imageUrl: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400'
+        name: 'Team Logo Water Bottle',
+        price: 24.99,
+        imageUrl: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400'
       }
     ]
   })
@@ -120,20 +120,20 @@ async function main() {
   const subscribers = await prisma.subscriber.createMany({
     data: [
       {
-        name: 'Alice Johnson',
-        email: 'alice.johnson@example.com'
+        name: 'Marcus Thompson',
+        email: 'marcus.thompson@example.com'
       },
       {
-        name: 'Bob Smith',
-        email: 'bob.smith@example.com'
+        name: 'Sarah Williams',
+        email: 'sarah.williams@example.com'
       },
       {
-        name: 'Carol Davis',
-        email: 'carol.davis@example.com'
+        name: 'James Rodriguez',
+        email: 'james.rodriguez@example.com'
       },
       {
-        name: 'David Wilson',
-        email: 'david.wilson@example.com'
+        name: 'Emily Chen',
+        email: 'emily.chen@example.com'
       }
     ]
   })
@@ -144,28 +144,28 @@ async function main() {
   const messages = await prisma.message.createMany({
     data: [
       {
-        sender: 'StreamHost',
-        content: 'Welcome everyone to the live stream! 🎉'
+        sender: 'GameHost',
+        content: 'Welcome to the 4bs0lut3-m4dn3ss live game stream! 🏀'
       },
       {
-        sender: 'Alice',
-        content: 'Hey everyone! Excited to be here!'
+        sender: 'FanMarcus',
+        content: 'Let\'s go team! Ready for this game! 🔥'
       },
       {
-        sender: 'Bob',
-        content: 'Great stream quality today 👍'
+        sender: 'CourtSideSarah',
+        content: 'Amazing atmosphere in the arena tonight! 🎉'
       },
       {
-        sender: 'Carol',
-        content: 'Can you show that demo again?'
+        sender: 'BasketballJames',
+        content: 'That was an incredible dunk! Replay please!'
       },
       {
-        sender: 'StreamHost',
-        content: 'Sure! Let me repeat the demo for those who just joined.'
+        sender: 'GameHost',
+        content: 'What a play! The energy is electric tonight!'
       },
       {
-        sender: 'David',
-        content: 'This is awesome! Thanks for the detailed explanation.'
+        sender: 'TeamFanEmily',
+        content: 'Best game of the season so far! Go team! 🏆'
       }
     ]
   })

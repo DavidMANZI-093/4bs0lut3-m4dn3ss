@@ -1,6 +1,6 @@
-# Five Systems Challenge 🚀
+# 🏀 4bs0lut3-m4dn3ss Basketball Team Platform
 
-A comprehensive backend implementation featuring **5 distinct systems** built with Next.js, TypeScript, PostgreSQL, and real-time WebSocket communication.
+A comprehensive basketball team platform featuring **5 integrated systems** for complete team and fan management, built with Next.js, TypeScript, PostgreSQL, and real-time WebSocket communication.
 
 ## 🏗️ Architecture
 
@@ -11,37 +11,42 @@ A comprehensive backend implementation featuring **5 distinct systems** built wi
 - **Validation:** Zod 3.24
 - **Testing:** Jest 29.7
 
-## 🎯 Systems Overview
+## 🎯 Platform Systems
 
-### 1. 🎫 Ticketing System
-Track and manage support tickets with status updates.
-- Create, read, and update tickets
-- Status management (OPEN/CLOSED)
-- Sorted by creation date
+### 1. 🎫 Game Ticketing System
+Complete ticket booking and management for basketball games.
+- Book tickets for upcoming games
+- Seat selection and pricing tiers
+- Ticket status management (Available/Sold)
+- Game schedule integration
 
-### 2. 🏀 Basketball Scoreboard
-Real-time score tracking with WebSocket updates.
-- Live score updates for Team A and Team B
-- Score increment and reset functionality
-- Real-time broadcasting to all connected clients
+### 2. 🏀 Live Scoreboard
+Real-time game score tracking with public and admin views.
+- Live score updates during games
+- Public scoreboard display
+- Admin controls for score management
+- Real-time broadcasting to all viewers
 
-### 3. 🛍️ E-commerce
-Product catalog and shopping cart management.
-- Product listing with images and pricing
+### 3. 🛍️ Team Merchandise Store
+Official team merchandise and fan gear e-commerce.
+- Team jerseys, caps, and accessories
 - Shopping cart with quantity management
-- Automatic total calculation
+- Secure checkout process
+- Inventory management
 
-### 4. 📧 Subscription System
-Email subscription management with validation.
-- Email uniqueness validation
-- Subscriber management
-- Clean API responses
+### 4. ⭐ Fan Membership System
+Premium fan membership with exclusive benefits.
+- Membership tier management
+- Exclusive content access
+- Member benefits and perks
+- Subscription management
 
-### 5. 💬 Live Stream Chat
-Real-time chat system with message persistence.
-- WebSocket-based messaging
-- Message history storage
-- User join/leave notifications
+### 5. 📺 Live Streaming Platform
+Live game streaming with interactive fan chat.
+- Real-time game streaming
+- Interactive fan chat during games
+- Message moderation tools
+- Stream quality controls
 
 ## 🚀 Quick Start
 

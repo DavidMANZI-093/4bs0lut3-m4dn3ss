@@ -98,13 +98,13 @@ export default function SubscriptionManager() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">📧 Subscription Management</h2>
-        <p className="text-gray-600">Manage email subscriptions and view subscriber list</p>
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">⭐ Fan Membership</h2>
+        <p className="text-gray-600">Join premium fan membership for exclusive benefits and perks</p>
       </div>
 
       {/* Subscription Form */}
       <div className="bg-white rounded-lg card-shadow border border-gray-200 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Subscribe to Newsletter</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">Join Premium Fan Membership</h3>
         
         {/* Message */}
         {message && (
