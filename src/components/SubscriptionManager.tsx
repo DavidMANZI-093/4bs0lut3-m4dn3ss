@@ -166,17 +166,17 @@ export default function SubscriptionManager() {
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-gray-900">Subscribers</h3>
           <div className="text-sm text-gray-600">
-            Total: {subscribers.length}
+            Total: {subscribers?.length || 0}
           </div>
         </div>
 
-        {subscribers.length === 0 ? (
+        {!subscribers || subscribers.length === 0 ? (
           <div className="text-center py-8 text-gray-500">
             No subscribers yet. Be the first to subscribe!
           </div>
         ) : (
           <div className="space-y-3">
-            {subscribers.map((subscriber) => (
+            {(subscribers || []).map((subscriber) => (
               <div
                 key={subscriber.id}
                 className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200"
@@ -204,12 +204,12 @@ export default function SubscriptionManager() {
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
-          <div className="text-2xl font-bold text-blue-600">{subscribers.length}</div>
+          <div className="text-2xl font-bold text-blue-600">{subscribers?.length || 0}</div>
           <div className="text-sm text-blue-700">Total Subscribers</div>
         </div>
         <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
           <div className="text-2xl font-bold text-green-600">
-            {subscribers.filter(s => {
+            {(subscribers || []).filter(s => {
               const joinDate = new Date(s.createdAt)
               const weekAgo = new Date()
               weekAgo.setDate(weekAgo.getDate() - 7)
@@ -220,7 +220,7 @@ export default function SubscriptionManager() {
         </div>
         <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 text-center">
           <div className="text-2xl font-bold text-purple-600">
-            {new Set(subscribers.map(s => s.email.split('@')[1])).size}
+            {new Set((subscribers || []).map(s => s.email.split('@')[1])).size}
           </div>
           <div className="text-sm text-purple-700">Unique Domains</div>
         </div>

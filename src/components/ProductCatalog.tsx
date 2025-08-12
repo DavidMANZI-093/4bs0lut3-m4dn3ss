@@ -152,7 +152,7 @@ export default function ProductCatalog() {
 
       {/* Products Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map((product) => (
+        {(products || []).map((product) => (
           <div key={product.id} className="bg-white rounded-lg card-shadow border border-gray-200 overflow-hidden">
             <img
               src={product.imageUrl || '/placeholder.jpg'}
@@ -180,7 +180,7 @@ export default function ProductCatalog() {
         ))}
       </div>
 
-      {products.length === 0 && (
+      {(!products || products.length === 0) && (
         <div className="text-center py-8">
           <div className="text-gray-500">Loading products...</div>
         </div>

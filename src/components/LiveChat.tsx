@@ -150,12 +150,12 @@ export default function LiveChat() {
         <>
           {/* Messages */}
           <div className="flex-1 overflow-y-auto mb-4 space-y-3 bg-gray-50 rounded-lg p-4">
-            {messages.length === 0 ? (
+            {!messages || messages.length === 0 ? (
               <div className="text-center text-gray-500 py-8">
                 No messages yet. Start the conversation!
               </div>
             ) : (
-              messages.map((message) => (
+              (messages || []).map((message) => (
                 <div
                   key={message.id}
                   className={`flex ${message.sender === username ? 'justify-end' : 'justify-start'}`}
