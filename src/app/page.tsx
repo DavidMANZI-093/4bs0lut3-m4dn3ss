@@ -178,8 +178,14 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Status Badge */}
+        {/* Demo Link */}
         <div className="text-center mt-8">
+          <a
+            href="/demo"
+            className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors mr-4"
+          >
+            🚀 Try Interactive Demo
+          </a>
           <div className="inline-flex items-center px-4 py-2 bg-green-100 border border-green-300 rounded-full">
             <span className="w-3 h-3 bg-green-500 rounded-full mr-2"></span>
             <span className="text-green-800 font-semibold">All Systems Operational</span>
