@@ -65,6 +65,36 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/tickets/[id]/route.js"
+    ],
+    "/scoreboard/public/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/scoreboard/public/page.js"
+    ],
+    "/api/score/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/score/route.js"
+    ],
+    "/membership/public/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/membership/public/page.js"
+    ],
+    "/api/membership/tiers/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/membership/tiers/route.js"
+    ],
+    "/membership/admin/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/membership/admin/page.js"
+    ],
+    "/api/membership/members/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/membership/members/route.js"
     ]
   }
 }

@@ -44,6 +44,7 @@ model Product {
   price    Float
   imageUrl String?
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   
   cartItems CartItem[]
 
@@ -114,4 +115,39 @@ model Session {
 enum UserRole {
   ADMIN
   DEVELOPER
+}
+
+// 7. Membership System
+model MembershipTier {
+  id          String   @id @default(cuid())
+  name        String
+  price       Float
+  description String
+  benefits    String[]
+  isPopular   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  members Member[]
+
+  @@map("membership_tiers")
+}
+
+model Member {
+  id        String       @id @default(cuid())
+  email     String
+  tierId    String
+  status    MemberStatus @default(ACTIVE)
+  joinedAt  DateTime     @default(now())
+  expiresAt DateTime
+  
+  tier MembershipTier @relation(fields: [tierId], references: [id], onDelete: Cascade)
+
+  @@map("members")
+}
+
+enum MemberStatus {
+  ACTIVE
+  EXPIRED
+  CANCELLED
 }
