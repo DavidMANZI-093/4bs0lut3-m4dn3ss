@@ -4,9 +4,10 @@ import { prisma } from '@/lib/prisma';
 // DELETE /api/messages/[id] - Delete message
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     const { id } = params;
 
     // Check if message exists
@@ -45,9 +46,10 @@ export async function DELETE(
 // GET /api/messages/[id] - Get single message
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     const { id } = params;
 
     const message = await prisma.message.findUnique({

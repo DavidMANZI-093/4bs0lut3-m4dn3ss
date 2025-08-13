@@ -4,9 +4,10 @@ import { prisma } from '@/lib/prisma';
 // DELETE /api/products/[id] - Delete product
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     const { id } = params;
 
     // Check if product exists
@@ -42,9 +43,10 @@ export async function DELETE(
 // GET /api/products/[id] - Get single product
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     const { id } = params;
 
     const product = await prisma.product.findUnique({
@@ -74,9 +76,10 @@ export async function GET(
 // PATCH /api/products/[id] - Update product
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     const { id } = params;
     const body = await request.json();
     const { name, price, imageUrl } = body;

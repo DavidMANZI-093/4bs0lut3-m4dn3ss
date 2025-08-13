@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server'
-import { prisma } from '@/lib/db'
+import { prisma } from '@/lib/prisma'
 import { subscribeSchema } from '@/lib/validations'
 import { successResponse, errorResponse, validationErrorResponse, withErrorHandling } from '@/lib/utils'
 import { Prisma } from '@prisma/client'

@@ -4,9 +4,10 @@ import { prisma } from '@/lib/prisma';
 // DELETE /api/membership/tiers/[id] - Delete membership tier
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     const { id } = params;
 
     // Check if tier exists
@@ -42,9 +43,10 @@ export async function DELETE(
 // GET /api/membership/tiers/[id] - Get single membership tier
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     const { id } = params;
 
     const tier = await prisma.membershipTier.findUnique({
@@ -74,9 +76,10 @@ export async function GET(
 // PATCH /api/membership/tiers/[id] - Update membership tier
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     const { id } = params;
     const body = await request.json();
     const { name, price, description, benefits, isPopular } = body;

@@ -1,6 +1,6 @@
 import { Server as SocketIOServer } from 'socket.io'
 import { Server as HTTPServer } from 'http'
-import { prisma } from './db'
+import { prisma } from './prisma'
 import { sendMessageSchema } from './validations'
 import type { SocketEvents } from '@/types'
 
@@ -44,7 +44,7 @@ export function initializeSocket(httpServer: HTTPServer) {
       try {
         const validation = sendMessageSchema.safeParse(messageData)
         if (!validation.success) {
-          socket.emit('error', 'Invalid message format')
+          console.error('Invalid message format:', validation.error)
           return
         }
 
@@ -58,7 +58,6 @@ export function initializeSocket(httpServer: HTTPServer) {
         console.log(`💬 Message from ${message.sender}: ${message.content}`)
       } catch (error) {
         console.error('Error handling message:', error)
-        socket.emit('error', 'Failed to send message')
       }
     })
 

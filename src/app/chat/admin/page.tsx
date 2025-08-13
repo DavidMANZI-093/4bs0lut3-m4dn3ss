@@ -48,7 +48,7 @@ export default function AdminChat() {
       setIsConnected(false);
     });
 
-    newSocket.on('new-message', (message: Message) => {
+    newSocket.on('message:broadcast', (message: Message) => {
       setMessages(prev => [...prev, message]);
     });
 

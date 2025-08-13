@@ -1,7 +1,6 @@
-import { NextRequest } from 'next/server'
-import { prisma } from '@/lib/db'
+import { NextRequest, NextResponse } from 'next/server'
+import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
-import { successResponse, errorResponse, validationErrorResponse, withErrorHandling } from '@/lib/utils'
 
 const updateQuantitySchema = z.object({
   quantity: z.number().int().min(1).max(99)
@@ -10,43 +9,77 @@ const updateQuantitySchema = z.object({
 const idSchema = z.string().cuid()
 
 // PATCH /api/cart/items/[id] - Update cart item quantity
-export const PATCH = withErrorHandling(async (
+export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
-) => {
-  const idValidation = idSchema.safeParse(params.id)
-  if (!idValidation.success) {
-    return errorResponse('Invalid cart item ID')
+  context: { params: Promise<{ id: string }> }
+) {
+  const params = await context.params;
+  try {
+    const idValidation = idSchema.safeParse(params.id)
+    if (!idValidation.success) {
+      return NextResponse.json(
+        { success: false, error: 'Invalid cart item ID' },
+        { status: 400 }
+      )
+    }
+
+    const body = await request.json()
+    const validation = updateQuantitySchema.safeParse(body)
+    if (!validation.success) {
+      return NextResponse.json(
+        { success: false, error: 'Invalid quantity' },
+        { status: 400 }
+      )
+    }
+
+    const cartItem = await prisma.cartItem.update({
+      where: { id: idValidation.data },
+      data: { quantity: validation.data.quantity },
+      include: { product: true }
+    })
+
+    return NextResponse.json({
+      success: true,
+      data: cartItem,
+      message: 'Cart item quantity updated'
+    })
+  } catch (error) {
+    console.error('Error updating cart item:', error)
+    return NextResponse.json(
+      { success: false, error: 'Failed to update cart item' },
+      { status: 500 }
+    )
   }
-
-  const body = await request.json()
-  const validation = updateQuantitySchema.safeParse(body)
-  if (!validation.success) {
-    return validationErrorResponse(validation.error)
-  }
-
-  const cartItem = await prisma.cartItem.update({
-    where: { id: idValidation.data },
-    data: { quantity: validation.data.quantity },
-    include: { product: true }
-  })
-
-  return successResponse(cartItem, 'Cart item quantity updated')
-})
+}
 
 // DELETE /api/cart/items/[id] - Remove cart item
-export const DELETE = withErrorHandling(async (
+export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
-) => {
-  const idValidation = idSchema.safeParse(params.id)
-  if (!idValidation.success) {
-    return errorResponse('Invalid cart item ID')
+  context: { params: Promise<{ id: string }> }
+) {
+  const params = await context.params;
+  try {
+    const idValidation = idSchema.safeParse(params.id)
+    if (!idValidation.success) {
+      return NextResponse.json(
+        { success: false, error: 'Invalid cart item ID' },
+        { status: 400 }
+      )
+    }
+
+    await prisma.cartItem.delete({
+      where: { id: idValidation.data }
+    })
+
+    return NextResponse.json({
+      success: true,
+      message: 'Cart item removed successfully'
+    })
+  } catch (error) {
+    console.error('Error deleting cart item:', error)
+    return NextResponse.json(
+      { success: false, error: 'Failed to delete cart item' },
+      { status: 500 }
+    )
   }
-
-  await prisma.cartItem.delete({
-    where: { id: idValidation.data }
-  })
-
-  return successResponse(null, 'Cart item removed successfully')
-})
+}

@@ -2,6 +2,7 @@
 
 import ProtectedRoute from '@/components/ProtectedRoute';
 import UserProfile from '@/components/UserProfile';
+import Link from 'next/link';
 
 export default function AdminDashboard() {
   return (
@@ -26,49 +27,67 @@ export default function AdminDashboard() {
               <div className="bg-white rounded-lg shadow p-6">
                 <h3 className="text-lg font-medium text-gray-900 mb-2">🎫 Ticketing System</h3>
                 <p className="text-gray-600 mb-4">Manage game tickets and sales</p>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                <Link 
+                  href="/tickets/admin"
+                  className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                >
                   Manage Tickets
-                </button>
+                </Link>
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
                 <h3 className="text-lg font-medium text-gray-900 mb-2">🏀 Scoreboard</h3>
                 <p className="text-gray-600 mb-4">Control live game scores</p>
-                <button className="bg-orange-600 text-white px-4 py-2 rounded-md hover:bg-orange-700 transition-colors">
+                <Link 
+                  href="/scoreboard/admin"
+                  className="inline-block bg-orange-600 text-white px-4 py-2 rounded-md hover:bg-orange-700 transition-colors"
+                >
                   Manage Games
-                </button>
+                </Link>
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
                 <h3 className="text-lg font-medium text-gray-900 mb-2">🛍️ Team Store</h3>
                 <p className="text-gray-600 mb-4">Manage products and orders</p>
-                <button className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors">
+                <Link 
+                  href="/store/admin"
+                  className="inline-block bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors"
+                >
                   Manage Store
-                </button>
+                </Link>
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
                 <h3 className="text-lg font-medium text-gray-900 mb-2">👥 Memberships</h3>
                 <p className="text-gray-600 mb-4">Manage fan memberships</p>
-                <button className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition-colors">
+                <Link 
+                  href="/membership/admin"
+                  className="inline-block bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition-colors"
+                >
                   Manage Members
-                </button>
+                </Link>
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
                 <h3 className="text-lg font-medium text-gray-900 mb-2">💬 Live Chat</h3>
                 <p className="text-gray-600 mb-4">Moderate game chat</p>
-                <button className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors">
+                <Link 
+                  href="/chat/admin"
+                  className="inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors"
+                >
                   Moderate Chat
-                </button>
+                </Link>
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
                 <h3 className="text-lg font-medium text-gray-900 mb-2">📊 Analytics</h3>
                 <p className="text-gray-600 mb-4">View system metrics</p>
-                <button className="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition-colors">
+                <Link 
+                  href="/dev"
+                  className="inline-block bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition-colors"
+                >
                   View Analytics
-                </button>
+                </Link>
               </div>
             </div>
           </div>

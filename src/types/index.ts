@@ -1,4 +1,4 @@
-import { Ticket, Score, Product, CartItem, Subscriber, Message, TicketStatus } from '@prisma/client'
+import type { Ticket, Score, Product, CartItem, Subscriber, Message, TicketStatus } from '@prisma/client'
 
 // API Response Types
 export interface ApiResponse<T = any> {
@@ -26,7 +26,7 @@ export interface SocketEvents {
   'score:reset': (score: Score) => void
   
   // Live Chat
-  'message:send': (message: SendMessageInput) => void
+  'message:send': (message: { sender: string; content: string }) => void
   'message:broadcast': (message: Message) => void
   'user:join': (username: string) => void
   'user:leave': (username: string) => void

@@ -9,6 +9,8 @@ async function main() {
   // Clear existing data
   await prisma.session.deleteMany()
   await prisma.user.deleteMany()
+  await prisma.member.deleteMany()
+  await prisma.membershipTier.deleteMany()
   await prisma.message.deleteMany()
   await prisma.cartItem.deleteMany()
   await prisma.product.deleteMany()
@@ -188,6 +190,88 @@ async function main() {
   })
   console.log(`✅ Created ${messages.count} chat messages`)
 
+  // 8. Seed Membership Tiers
+  console.log('🏆 Seeding membership tiers...')
+  const membershipTiers = await prisma.membershipTier.createMany({
+    data: [
+      {
+        name: 'Bronze Fan',
+        price: 99.99,
+        description: 'Perfect for casual fans who want to stay connected',
+        benefits: [
+          'Monthly newsletter with team updates',
+          '10% discount on merchandise',
+          'Access to member-only chat rooms',
+          'Early ticket notifications'
+        ],
+        isPopular: false
+      },
+      {
+        name: 'Silver Supporter',
+        price: 199.99,
+        description: 'Great value for dedicated fans',
+        benefits: [
+          'All Bronze benefits',
+          '15% discount on merchandise',
+          'Priority ticket access',
+          'Quarterly team meetup invitations',
+          'Exclusive behind-the-scenes content',
+          'Free shipping on all orders'
+        ],
+        isPopular: true
+      },
+      {
+        name: 'Gold Champion',
+        price: 399.99,
+        description: 'Ultimate experience for true champions',
+        benefits: [
+          'All Silver benefits',
+          '25% discount on merchandise',
+          'VIP game day experiences',
+          'Meet & greet with players',
+          'Courtside seat upgrades (when available)',
+          'Personalized team merchandise',
+          'Access to exclusive events and parties'
+        ],
+        isPopular: false
+      }
+    ]
+  })
+  console.log(`✅ Created ${membershipTiers.count} membership tiers`)
+
+  // 9. Seed Sample Members
+  console.log('👥 Seeding sample members...')
+  const allTiers = await prisma.membershipTier.findMany()
+  const members = await prisma.member.createMany({
+    data: [
+      {
+        email: 'member1@example.com',
+        tierId: allTiers[0].id, // Bronze
+        status: 'ACTIVE',
+        expiresAt: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000) // 1 year from now
+      },
+      {
+        email: 'member2@example.com',
+        tierId: allTiers[1].id, // Silver
+        status: 'ACTIVE',
+        expiresAt: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)
+      },
+      {
+        email: 'member3@example.com',
+        tierId: allTiers[2].id, // Gold
+        status: 'ACTIVE',
+        expiresAt: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)
+      },
+      {
+        email: 'expired@example.com',
+        tierId: allTiers[0].id, // Bronze
+        status: 'EXPIRED',
+        expiresAt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) // 30 days ago
+      }
+    ]
+  })
+  console.log(`✅ Created ${members.count} members`)
+
   console.log('🎉 Database seeding completed successfully!')
 
   // Print summary
@@ -199,6 +283,8 @@ async function main() {
   console.log(`- Cart Items: ${cartItems.count}`)
   console.log(`- Subscribers: ${subscribers.count}`)
   console.log(`- Chat Messages: ${messages.count}`)
+  console.log(`- Membership Tiers: ${membershipTiers.count}`)
+  console.log(`- Members: ${members.count}`)
   console.log('\n🔐 Authentication Credentials:')
   console.log('- Admin: admin@4bs0lut3-m4dn3ss.com / admin123')
   console.log('- Developer: dev@4bs0lut3-m4dn3ss.com / dev123')

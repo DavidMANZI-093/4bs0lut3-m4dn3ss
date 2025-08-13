@@ -56,3 +56,99 @@ a:hover {
 .card-shadow:hover {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
+
+/* Live Stream Flying Messages Animations */
+@keyframes flyAcross {
+  from {
+    transform: translateX(100vw) translateY(-50%);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-300px) translateY(-50%);
+    opacity: 0.8;
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
+  }
+  50% {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+}
+
+.flying-message {
+  animation: flyAcross 8s linear infinite;
+}
+
+.flying-message:nth-child(odd) {
+  animation-duration: 6s;
+}
+
+.flying-message:nth-child(even) {
+  animation-duration: 10s;
+}
+
+.bounce-animation {
+  animation: bounce 2s infinite;
+}
+
+.glow-text {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* Live Stream Video Overlay */
+.video-overlay {
+  background: linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    transparent 50%,
+    rgba(255, 165, 0, 0.1) 100%
+  );
+}
+
+/* Chat Message Animations */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.chat-message-enter {
+  animation: slideInRight 0.3s ease-out;
+}
+
+/* Live Indicator Pulse */
+@keyframes livePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+.live-indicator {
+  animation: livePulse 2s infinite;
+}

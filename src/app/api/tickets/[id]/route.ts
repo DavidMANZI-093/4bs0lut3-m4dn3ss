@@ -1,13 +1,14 @@
 import { NextRequest } from 'next/server'
-import { prisma } from '@/lib/db'
+import { prisma } from '@/lib/prisma'
 import { updateTicketStatusSchema, idSchema } from '@/lib/validations'
 import { successResponse, errorResponse, validationErrorResponse, withErrorHandling } from '@/lib/utils'
 
 // GET /api/tickets/[id] - Get a specific ticket
 export const GET = withErrorHandling(async (
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) => {
+  const params = await context.params;
   const validation = idSchema.safeParse(params.id)
   if (!validation.success) {
     return errorResponse('Invalid ticket ID')
@@ -27,8 +28,9 @@ export const GET = withErrorHandling(async (
 // PATCH /api/tickets/[id] - Update ticket status
 export const PATCH = withErrorHandling(async (
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) => {
+  const params = await context.params;
   const idValidation = idSchema.safeParse(params.id)
   if (!idValidation.success) {
     return errorResponse('Invalid ticket ID')

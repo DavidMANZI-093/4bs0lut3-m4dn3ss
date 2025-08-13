@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/db'
+import { prisma } from '@/lib/prisma'
 import { successResponse, withErrorHandling } from '@/lib/utils'
 import { calculateCartTotal } from '@/lib/utils'
 import type { CartSummary } from '@/types'
