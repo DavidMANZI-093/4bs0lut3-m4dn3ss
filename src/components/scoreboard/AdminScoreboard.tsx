@@ -10,7 +10,7 @@ interface Score {
   updatedAt: string
 }
 
-export default function BasketballScoreboard() {
+export default function AdminScoreboard() {
   const [score, setScore] = useState<Score | null>(null)
   const [socket, setSocket] = useState<Socket | null>(null)
   const [isConnected, setIsConnected] = useState(false)
@@ -114,7 +114,7 @@ export default function BasketballScoreboard() {
     <div className="bg-white rounded-lg card-shadow border border-gray-200 p-6">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">🏀 Basketball Scoreboard</h2>
+        <h2 className="text-2xl font-bold text-gray-900">🏀 Basketball Scoreboard Admin</h2>
         <div className="flex items-center space-x-2">
           <div className={`w-3 h-3 rounded-full ${isConnected ? 'bg-green-500' : 'bg-red-500'}`}></div>
           <span className="text-sm text-gray-600">
@@ -123,7 +123,7 @@ export default function BasketballScoreboard() {
         </div>
       </div>
 
-      {/* Scoreboard */}
+      {/* Scoreboard with Controls */}
       <div className="grid grid-cols-2 gap-8 mb-8">
         {/* Team A */}
         <div className="text-center">
@@ -179,7 +179,7 @@ export default function BasketballScoreboard() {
               <button
                 onClick={() => updateScore('B', 3)}
                 disabled={isLoading}
-                className="w-full bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 disabled-opacity-50 transition-colors"
+                className="w-full bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 disabled:opacity-50 transition-colors"
               >
                 +3
               </button>
@@ -188,7 +188,7 @@ export default function BasketballScoreboard() {
         </div>
       </div>
 
-      {/* Controls */}
+      {/* Admin Controls */}
       <div className="flex justify-center space-x-4">
         <button
           onClick={resetScore}

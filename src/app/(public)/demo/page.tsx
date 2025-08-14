@@ -1,8 +1,8 @@
-import BasketballScoreboard from '@/components/BasketballScoreboard'
-import LiveChat from '@/components/LiveChat'
-import ProductCatalog from '@/components/ProductCatalog'
-import TicketingDashboard from '@/components/TicketingDashboard'
-import SubscriptionManager from '@/components/SubscriptionManager'
+import PublicScoreboard from '@/components/scoreboard/PublicScoreboard'
+import PublicChat from '@/components/chat/PublicChat'
+import PublicStore from '@/components/store/PublicStore'
+import PublicTickets from '@/components/tickets/PublicTickets'
+import PublicMembership from '@/components/membership/PublicMembership'
 
 export default function DemoPage() {
   return (
@@ -22,27 +22,27 @@ export default function DemoPage() {
       <div className="container mx-auto px-4 py-8 space-y-12">
         {/* Basketball Scoreboard */}
         <section>
-          <BasketballScoreboard />
+          <PublicScoreboard />
         </section>
 
         {/* Live Chat */}
         <section>
-          <LiveChat />
+          <PublicChat />
         </section>
 
         {/* Product Catalog */}
         <section>
-          <ProductCatalog />
+          <PublicStore />
         </section>
 
         {/* Ticketing Dashboard */}
         <section>
-          <TicketingDashboard />
+          <PublicTickets />
         </section>
 
-        {/* Subscription Manager */}
+        {/* Membership Manager */}
         <section>
-          <SubscriptionManager />
+          <PublicMembership />
         </section>
       </div>
 

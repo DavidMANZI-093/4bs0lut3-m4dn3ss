@@ -1,6 +1,6 @@
 'use client';
 
-import UserProfile from '@/components/UserProfile';
+import UserProfile from '@/components/auth/UserProfile';
 import Link from 'next/link';
 
 export default function AdminDashboard() {

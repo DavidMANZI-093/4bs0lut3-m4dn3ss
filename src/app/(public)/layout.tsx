@@ -1,4 +1,4 @@
-import PublicNavigation from '@/components/PublicNavigation'
+import PublicNavigation from '@/components/navigation/PublicNavigation'
 
 export default function PublicLayout({
   children,

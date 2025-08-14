@@ -23,7 +23,7 @@ interface CartSummary {
   itemCount: number
 }
 
-export default function ProductCatalog() {
+export default function PublicStore() {
   const [products, setProducts] = useState<Product[]>([])
   const [cart, setCart] = useState<CartSummary | null>(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -144,6 +144,9 @@ export default function ProductCatalog() {
                   <span>Total:</span>
                   <span>{formatPrice(cart.total)}</span>
                 </div>
+                <button className="w-full mt-3 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">
+                  Checkout
+                </button>
               </div>
             </div>
           )}

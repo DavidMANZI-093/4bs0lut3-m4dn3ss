@@ -12,22 +12,36 @@ export async function GET() {
           }
         }
       },
-      orderBy: { joinedAt: 'desc' }
+      orderBy: { createdAt: 'desc' }
     });
 
     // Transform the data to match the expected format
     const transformedMembers = members.map(member => ({
       id: member.id,
       email: member.email,
-      tierName: member.tier.name,
+      tierName: member.tierName,
       status: member.status,
-      joinedAt: member.joinedAt.toISOString(),
-      expiresAt: member.expiresAt.toISOString()
+      paymentStatus: member.paymentStatus,
+      benefits: member.benefits,
+      purchaseDate: member.purchaseDate.toISOString(),
+      expiryDate: member.expiryDate.toISOString(),
+      createdAt: member.createdAt.toISOString(),
+      updatedAt: member.updatedAt.toISOString()
     }));
 
     return NextResponse.json({
       success: true,
-      data: transformedMembers
+      data: {
+        members: transformedMembers,
+        pagination: {
+          page: 1,
+          limit: transformedMembers.length,
+          totalCount: transformedMembers.length,
+          totalPages: 1,
+          hasNextPage: false,
+          hasPrevPage: false
+        }
+      }
     });
   } catch (error) {
     console.error('Error fetching members:', error);

@@ -10,8 +10,10 @@ describe('Tickets API', () => {
     
     expect(response.status).toBe(200)
     expect(data.success).toBe(true)
-    expect(Array.isArray(data.data)).toBe(true)
-    expect(data.data.length).toBeGreaterThan(0)
+    expect(Array.isArray(data.data.tickets)).toBe(true)
+    expect(data.data.tickets.length).toBeGreaterThan(0)
+    expect(data.data.pagination).toBeDefined()
+    expect(typeof data.data.pagination.totalCount).toBe('number')
   })
 
   it('should create a new ticket', async () => {

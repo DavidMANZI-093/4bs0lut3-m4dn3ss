@@ -1,7 +1,7 @@
 'use client';
 
-import ProtectedRoute from '@/components/ProtectedRoute';
-import UserProfile from '@/components/UserProfile';
+import ProtectedRoute from '@/components/auth/ProtectedRoute';
+import UserProfile from '@/components/auth/UserProfile';
 
 export default function DeveloperDashboard() {
   return (
