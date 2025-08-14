@@ -116,7 +116,7 @@ export default function AdminTickets() {
               </div>
               <div className="flex items-center space-x-4">
                 <a 
-                  href="/tickets/public" 
+                  href="/tickets" 
                   target="_blank"
                   className="text-sm text-blue-600 hover:text-blue-800"
                 >

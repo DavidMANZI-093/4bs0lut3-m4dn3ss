@@ -115,7 +115,7 @@ export default function AdminScoreboard() {
               </div>
               <div className="flex items-center space-x-4">
                 <a 
-                  href="/scoreboard/public" 
+                  href="/scoreboard" 
                   target="_blank"
                   className="text-sm text-blue-600 hover:text-blue-800"
                 >

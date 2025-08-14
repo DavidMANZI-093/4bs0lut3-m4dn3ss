@@ -7,11 +7,11 @@ export default function PublicNavigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const publicRoutes = [
-    { name: 'Live Scoreboard', href: '/scoreboard/public', icon: '🏀' },
-    { name: 'Game Tickets', href: '/tickets/public', icon: '🎫' },
-    { name: 'Team Store', href: '/store/public', icon: '🛍️' },
-    { name: 'Memberships', href: '/membership/public', icon: '👥' },
-    { name: 'Live Chat', href: '/chat/public', icon: '💬' },
+    { name: 'Live Scoreboard', href: '/scoreboard', icon: '🏀' },
+    { name: 'Game Tickets', href: '/tickets', icon: '🎫' },
+    { name: 'Team Store', href: '/store', icon: '🛍️' },
+    { name: 'Memberships', href: '/membership', icon: '👥' },
+    { name: 'Live Chat', href: '/chat', icon: '💬' },
   ];
 
   return (

@@ -1,13 +1,10 @@
-import PublicNavigation from '@/components/PublicNavigation';
 import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <PublicNavigation />
-      
+    <>
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-orange-900 via-orange-800 to-red-900">
+      <div className="bg-gradient-to-br from-orange-900 via-orange-800 to-red-900 -mx-4 -mt-8 mb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
@@ -18,13 +15,13 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/scoreboard/public"
+                href="/scoreboard"
                 className="bg-white text-orange-900 px-8 py-3 rounded-lg font-semibold hover:bg-orange-50 transition-colors"
               >
                 🏀 Watch Live Game
               </Link>
               <Link
-                href="/tickets/public"
+                href="/tickets"
                 className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-900 transition-colors"
               >
                 🎫 Get Tickets
@@ -35,7 +32,7 @@ export default function Home() {
       </div>
 
       {/* Features Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="mb-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             Everything You Need for Basketball
@@ -54,7 +51,7 @@ export default function Home() {
               Follow every game with real-time score updates and live game information.
             </p>
             <Link 
-              href="/scoreboard/public" 
+              href="/scoreboard" 
               className="inline-block bg-orange-600 text-white px-4 py-2 rounded-md hover:bg-orange-700 transition-colors"
             >
               Watch Live →
@@ -69,7 +66,7 @@ export default function Home() {
               Secure your seats for upcoming games with our easy ticket purchasing system.
             </p>
             <Link 
-              href="/tickets/public" 
+              href="/tickets" 
               className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
             >
               Buy Tickets →
@@ -84,7 +81,7 @@ export default function Home() {
               Show your team spirit with official merchandise and exclusive gear.
             </p>
             <Link 
-              href="/store/public" 
+              href="/store" 
               className="inline-block bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors"
             >
               Shop Now →
@@ -99,7 +96,7 @@ export default function Home() {
               Join our exclusive membership program for special perks and benefits.
             </p>
             <Link 
-              href="/membership/public" 
+              href="/membership" 
               className="inline-block bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition-colors"
             >
               Join Now →
@@ -114,7 +111,7 @@ export default function Home() {
               Connect with fellow fans during games with our live chat feature.
             </p>
             <Link 
-              href="/chat/public" 
+              href="/chat" 
               className="inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors"
             >
               Join Chat →
@@ -139,37 +136,35 @@ export default function Home() {
       </div>
 
       {/* Stats Section */}
-      <div className="bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Platform Statistics
-            </h2>
+      <div className="bg-white -mx-4 px-4 py-16 mb-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            Platform Statistics
+          </h2>
+        </div>
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="text-center">
+            <div className="text-3xl font-bold text-orange-600 mb-2">5</div>
+            <div className="text-gray-600">Integrated Systems</div>
           </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-orange-600 mb-2">5</div>
-              <div className="text-gray-600">Integrated Systems</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-orange-600 mb-2">15+</div>
-              <div className="text-gray-600">API Endpoints</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-orange-600 mb-2">Real-time</div>
-              <div className="text-gray-600">Live Updates</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-orange-600 mb-2">24/7</div>
-              <div className="text-gray-600">System Uptime</div>
-            </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-orange-600 mb-2">15+</div>
+            <div className="text-gray-600">API Endpoints</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-orange-600 mb-2">Real-time</div>
+            <div className="text-gray-600">Live Updates</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-orange-600 mb-2">24/7</div>
+            <div className="text-gray-600">System Uptime</div>
           </div>
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white">
+      <footer className="bg-gray-900 text-white -mx-4 -mb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
             <div className="text-2xl font-bold text-orange-500 mb-4">
@@ -179,15 +174,15 @@ export default function Home() {
               Professional basketball team platform with integrated systems
             </p>
             <div className="flex justify-center space-x-6">
-              <Link href="/scoreboard/public" className="text-gray-400 hover:text-white">Live Scores</Link>
-              <Link href="/tickets/public" className="text-gray-400 hover:text-white">Tickets</Link>
-              <Link href="/store/public" className="text-gray-400 hover:text-white">Store</Link>
-              <Link href="/membership/public" className="text-gray-400 hover:text-white">Memberships</Link>
-              <Link href="/chat/public" className="text-gray-400 hover:text-white">Chat</Link>
+              <Link href="/scoreboard" className="text-gray-400 hover:text-white">Live Scores</Link>
+              <Link href="/tickets" className="text-gray-400 hover:text-white">Tickets</Link>
+              <Link href="/store" className="text-gray-400 hover:text-white">Store</Link>
+              <Link href="/membership" className="text-gray-400 hover:text-white">Memberships</Link>
+              <Link href="/chat" className="text-gray-400 hover:text-white">Chat</Link>
             </div>
           </div>
         </div>
       </footer>
-    </div>
+    </>
   );
 }

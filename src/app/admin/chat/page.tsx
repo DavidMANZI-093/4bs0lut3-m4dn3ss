@@ -214,7 +214,7 @@ export default function AdminChat() {
               </div>
               <div className="flex items-center space-x-4">
                 <a 
-                  href="/chat/public" 
+                  href="/chat" 
                   target="_blank"
                   className="text-sm text-blue-600 hover:text-blue-800"
                 >

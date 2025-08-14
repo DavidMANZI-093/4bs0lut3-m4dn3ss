@@ -114,7 +114,7 @@ export default function AdminStore() {
               </div>
               <div className="flex items-center space-x-4">
                 <a 
-                  href="/store/public" 
+                  href="/store" 
                   target="_blank"
                   className="text-sm text-blue-600 hover:text-blue-800"
                 >

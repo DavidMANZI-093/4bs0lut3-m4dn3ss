@@ -167,7 +167,7 @@ export default function AdminMembership() {
                             </div>
                             <div className="flex items-center space-x-4">
                                 <a
-                                    href="/membership/public"
+                                    href="/membership"
                                     target="_blank"
                                     className="text-sm text-blue-600 hover:text-blue-800"
                                 >
