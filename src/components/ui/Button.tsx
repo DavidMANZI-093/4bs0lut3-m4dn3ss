@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { Loader2 } from 'lucide-react'
+import { designTokens, sizeVariants } from '@/lib/design-tokens'
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive'
@@ -95,4 +96,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
 Button.displayName = 'Button'
 
-export default Button
+export { Button }

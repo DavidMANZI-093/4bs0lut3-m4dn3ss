@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { Ticket, X } from 'lucide-react'
 
 interface Ticket {
     id: string
@@ -85,7 +86,10 @@ export default function PublicTickets() {
         <div className="space-y-6">
             {/* Header */}
             <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-gray-900">🎫 Game Ticket Booking</h2>
+                <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                    <Ticket className="w-6 h-6" />
+                    Game Ticket Booking
+                </h2>
                 <button
                     onClick={() => setShowCreateForm(true)}
                     className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
@@ -150,7 +154,7 @@ export default function PublicTickets() {
                                 onClick={() => setSelectedTicket(null)}
                                 className="text-gray-500 hover:text-gray-700"
                             >
-                                ✕
+                                <X className="w-4 h-4" />
                             </button>
                         </div>
                         <div className="space-y-4">

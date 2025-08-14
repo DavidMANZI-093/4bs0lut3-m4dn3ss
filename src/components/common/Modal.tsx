@@ -1,6 +1,7 @@
 'use client'
 
 import { ReactNode } from 'react'
+import { X } from 'lucide-react'
 
 interface ModalProps {
   isOpen: boolean
@@ -35,7 +36,7 @@ export default function Modal({
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700 transition-colors"
           >
-            ✕
+            <X className="w-4 h-4" />
           </button>
         </div>
         {children}
