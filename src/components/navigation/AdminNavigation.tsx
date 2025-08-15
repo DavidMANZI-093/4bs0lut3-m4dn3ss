@@ -26,16 +26,14 @@ export default function AdminNavigation() {
   }
 
   return (
-    <nav className="bg-[var(--primary)] text-white shadow-lg">
+    <header className="bg-[var(--surface)] shadow-sm border-b border-[var(--border)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            <Link href="/admin" className="flex items-center">
-              <span className="text-xl font-bold text-[var(--warning)] flex items-center">
-                <Activity className="w-5 h-5 mr-2" />
-                4bs0lut3-m4dn3ss Admin
-              </span>
-            </Link>
+        <div className="flex justify-between items-center h-16">
+          <div>
+            <h1 className="text-xl font-semibold text-[var(--text-primary)] flex items-center">
+              <Activity className="w-5 h-5 mr-2" />
+              4bs0lut3-m4dn3ss Admin
+            </h1>
           </div>
 
           {/* Desktop Navigation */}
@@ -44,7 +42,7 @@ export default function AdminNavigation() {
               <Link
                 key={route.href}
                 href={route.href}
-                className="flex items-center space-x-1 text-[var(--space-cadet-800)] hover:text-[var(--warning)] px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                className="flex items-center space-x-1 text-[var(--text-secondary)] hover:text-[var(--primary)] px-3 py-2 rounded-md text-sm font-medium transition-colors"
               >
                 <span>{route.icon}</span>
                 <span>{route.name}</span>
@@ -59,7 +57,7 @@ export default function AdminNavigation() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-[var(--space-cadet-800)] hover:text-[var(--warning)] focus:outline-none focus:text-[var(--warning)]"
+              className="text-[var(--text-secondary)] hover:text-[var(--primary)] focus:outline-none focus:text-[var(--primary)]"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {isMenuOpen ? (
@@ -75,12 +73,12 @@ export default function AdminNavigation() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-[var(--space-cadet-600)]">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-[var(--border)]">
               {adminRoutes.map((route) => (
                 <Link
                   key={route.href}
                   href={route.href}
-                  className="flex items-center space-x-2 text-[var(--space-cadet-800)] hover:text-[var(--warning)] hover:bg-[var(--space-cadet-600)] block px-3 py-2 rounded-md text-base font-medium transition-colors"
+                  className="flex items-center space-x-2 text-[var(--text-secondary)] hover:text-[var(--primary)] hover:bg-[var(--background)] block px-3 py-2 rounded-md text-base font-medium transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <span>{route.icon}</span>
@@ -94,6 +92,6 @@ export default function AdminNavigation() {
           </div>
         )}
       </div>
-    </nav>
+    </header>
   );
 }
