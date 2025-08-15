@@ -2,7 +2,7 @@
 
 import UserProfile from '@/components/auth/UserProfile';
 import Link from 'next/link';
-import { Activity, Ticket, Store, Users, MessageCircle, BarChart3 } from 'lucide-react';
+import { Activity, Ticket, Store, Users, MessageCircle, BarChart3, Play } from 'lucide-react';
 
 export default function AdminDashboard() {
   return (
@@ -35,6 +35,20 @@ export default function AdminDashboard() {
                   className="inline-block bg-[var(--primary)] text-white px-4 py-2 rounded-md hover:bg-[var(--primary-hover)] transition-colors"
                 >
                   Manage Tickets
+                </Link>
+              </div>
+
+              <div className="bg-[var(--surface)] rounded-lg shadow p-6">
+                <h3 className="text-lg font-medium text-[var(--text-primary)] mb-2 flex items-center gap-2">
+                  <Play className="w-5 h-5" />
+                  Live Stream
+                </h3>
+                <p className="text-[var(--text-secondary)] mb-4">Manage YouTube live streams</p>
+                <Link 
+                  href="/admin/livestream"
+                  className="inline-block bg-[var(--primary)] text-white px-4 py-2 rounded-md hover:bg-[var(--primary-hover)] transition-colors"
+                >
+                  Manage Stream
                 </Link>
               </div>
 

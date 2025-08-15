@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 import UserProfile from '@/components/auth/UserProfile';
-import { BarChart3, Activity, Ticket, Store, Users, MessageCircle, Monitor } from 'lucide-react';
+import { BarChart3, Activity, Ticket, Store, Users, MessageCircle, Monitor, Play } from 'lucide-react';
 
 export default function AdminNavigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,6 +12,7 @@ export default function AdminNavigation() {
 
   const adminRoutes = [
     { name: 'Dashboard', href: '/admin', icon: <BarChart3 className="w-4 h-4" /> },
+    { name: 'Live Stream', href: '/admin/livestream', icon: <Play className="w-4 h-4" /> },
     { name: 'Scoreboard', href: '/admin/scoreboard', icon: <Activity className="w-4 h-4" /> },
     { name: 'Tickets', href: '/admin/tickets', icon: <Ticket className="w-4 h-4" /> },
     { name: 'Store', href: '/admin/store', icon: <Store className="w-4 h-4" /> },

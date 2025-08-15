@@ -396,3 +396,15 @@ enum OrderStatus {
   CANCELLED
   REFUNDED
 }
+
+model LiveStream {
+  id          String   @id @default(cuid())
+  youtubeUrl  String?
+  isActive    Boolean  @default(false)
+  title       String?
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("live_streams")
+}

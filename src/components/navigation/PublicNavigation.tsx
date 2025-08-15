@@ -12,7 +12,7 @@ export default function PublicNavigation() {
     { name: 'Game Tickets', href: '/tickets', icon: <Ticket className="w-4 h-4" /> },
     { name: 'Team Store', href: '/store', icon: <Store className="w-4 h-4" /> },
     { name: 'Memberships', href: '/membership', icon: <Users className="w-4 h-4" /> },
-    { name: 'Live Chat', href: '/chat', icon: <MessageCircle className="w-4 h-4" /> },
+    { name: 'Live Stream', href: '/chat', icon: <MessageCircle className="w-4 h-4" /> },
   ];
 
   return (

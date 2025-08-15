@@ -3,12 +3,22 @@
 import { useState, useEffect, useRef } from 'react'
 import { io, Socket } from 'socket.io-client'
 import { MessageCircle } from 'lucide-react'
+import YouTubePlayer from '@/components/livestream/YouTubePlayer'
+import { extractYouTubeId } from '@/app/api/livestream/route'
 
 interface Message {
   id: string
   sender: string
   content: string
   createdAt: string
+}
+
+interface LiveStream {
+  id: string
+  youtubeUrl: string | null
+  isActive: boolean
+  title: string | null
+  description: string | null
 }
 
 export default function PublicChat() {
@@ -18,6 +28,7 @@ export default function PublicChat() {
   const [username, setUsername] = useState('')
   const [newMessage, setNewMessage] = useState('')
   const [isJoined, setIsJoined] = useState(false)
+  const [stream, setStream] = useState<LiveStream | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   const scrollToBottom = () => {
@@ -27,6 +38,22 @@ export default function PublicChat() {
   useEffect(() => {
     scrollToBottom()
   }, [messages])
+
+  useEffect(() => {
+    fetchLiveStream()
+  }, [])
+
+  const fetchLiveStream = async () => {
+    try {
+      const response = await fetch('/api/livestream')
+      const data = await response.json()
+      if (data.success && data.stream) {
+        setStream(data.stream)
+      }
+    } catch (error) {
+      console.error('Error fetching live stream:', error)
+    }
+  }
 
   useEffect(() => {
     // Fetch initial messages
@@ -108,8 +135,35 @@ export default function PublicChat() {
     }
   }
 
+  const videoId = stream?.youtubeUrl ? extractYouTubeId(stream.youtubeUrl) : null
+
   return (
-    <div className="bg-[var(--surface)] rounded-lg card-shadow border border-[var(--border)] p-6 h-96 flex flex-col">
+    <div className="space-y-6">
+      {/* Live Stream Section */}
+      {stream?.isActive && videoId && (
+        <div className="bg-[var(--surface)] rounded-lg card-shadow border border-[var(--border)] p-6">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h2 className="text-xl font-bold text-[var(--text-primary)]">
+                {stream.title || 'Live Stream'}
+              </h2>
+              {stream.description && (
+                <p className="text-sm text-[var(--text-secondary)] mt-1">
+                  {stream.description}
+                </p>
+              )}
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-[var(--error)] animate-pulse"></div>
+              <span className="text-sm font-medium text-[var(--error)]">LIVE</span>
+            </div>
+          </div>
+          <YouTubePlayer videoId={videoId} autoplay={true} muted={false} />
+        </div>
+      )}
+
+      {/* Chat Section */}
+      <div className="bg-[var(--surface)] rounded-lg card-shadow border border-[var(--border)] p-6 h-96 flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-2xl font-bold text-[var(--text-primary)] flex items-center gap-2">
@@ -217,6 +271,7 @@ export default function PublicChat() {
           </div>
         </>
       )}
+      </div>
     </div>
   )
 }

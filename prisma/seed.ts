@@ -499,6 +499,18 @@ async function main() {
   })
   console.log(`Created ${auditLogs.count} audit logs`)
 
+  // 14. Seed Live Stream
+  console.log('Seeding live stream...')
+  const liveStream = await prisma.liveStream.create({
+    data: {
+      youtubeUrl: 'https://youtu.be/LPDnemFoqVk',
+      title: '4bs0lut3-m4dn3ss Live Game Stream',
+      description: 'Watch our live basketball games and interact with other fans!',
+      isActive: true
+    }
+  })
+  console.log('Created live stream')
+
   console.log('Database seeding completed successfully!')
 
   // Print summary
@@ -516,6 +528,7 @@ async function main() {
   console.log(`- Ticket Types: ${ticketTypes.count}`)
   console.log(`- Payments: ${payments.count}`)
   console.log(`- Audit Logs: ${auditLogs.count}`)
+  console.log(`- Live Stream: 1 (${liveStream.title})`)
   console.log('\nAuthentication Credentials:')
   console.log('- Admin: admin@4bs0lut3-m4dn3ss.com / admin123')
   console.log('- Developer: dev@4bs0lut3-m4dn3ss.com / dev123')
