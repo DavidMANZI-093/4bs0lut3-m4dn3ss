@@ -1,27 +1,11 @@
 'use client';
 
-import UserProfile from '@/components/auth/UserProfile';
 import Link from 'next/link';
 import { Activity, Ticket, Store, Users, MessageCircle, BarChart3, Play } from 'lucide-react';
 
 export default function AdminDashboard() {
   return (
-    <div className="min-h-screen bg-[var(--background)]">
-      <header className="bg-[var(--surface)] shadow-sm border-b border-[var(--border)]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div>
-              <h1 className="text-xl font-semibold text-[var(--text-primary)]">
-                <Activity className="w-5 h-5 inline mr-2" />
-                Admin Dashboard
-              </h1>
-            </div>
-            <UserProfile />
-          </div>
-        </div>
-      </header>
-
-      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="bg-[var(--surface)] rounded-lg shadow p-6">
@@ -113,17 +97,17 @@ export default function AdminDashboard() {
                   <BarChart3 className="w-5 h-5" />
                   Analytics
                 </h3>
-                <p className="text-gray-600 mb-4">View system metrics</p>
+                <p className="text-[var(--text-secondary)] mb-4">View system metrics</p>
                 <Link 
                   href="/admin/dev"
-                  className="inline-block bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition-colors"
+                  className="inline-block bg-[var(--text-secondary)] text-white px-4 py-2 rounded-md hover:bg-[var(--ultra-violet-600)] transition-colors"
                 >
                   View Analytics
                 </Link>
               </div>
             </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }

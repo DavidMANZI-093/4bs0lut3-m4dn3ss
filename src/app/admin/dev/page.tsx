@@ -1,28 +1,12 @@
 'use client';
 
 import ProtectedRoute from '@/components/auth/ProtectedRoute'
-import { Monitor, Settings, BarChart3, Database, FileText, Wifi, TestTube } from 'lucide-react';
-import UserProfile from '@/components/auth/UserProfile';
+import { Settings, BarChart3, Database, FileText, Wifi, TestTube } from 'lucide-react';
 
 export default function DeveloperDashboard() {
   return (
     <ProtectedRoute requiredRole="DEVELOPER">
-      <div className="min-h-screen bg-[var(--background)]">
-        <header className="bg-[var(--surface)] shadow-sm border-b border-[var(--border)]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16">
-              <div>
-                <h1 className="text-xl font-semibold text-[var(--text-primary)]">
-                  <Monitor className="w-5 h-5 inline mr-2" />
-                  Developer Dashboard
-                </h1>
-              </div>
-              <UserProfile />
-            </div>
-          </div>
-        </header>
-
-        <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
           <div className="px-4 py-6 sm:px-0">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="bg-[var(--surface)] rounded-lg shadow p-6">
@@ -90,9 +74,8 @@ export default function DeveloperDashboard() {
                   Run Tests
                 </button>
               </div>
-            </div>
           </div>
-        </main>
+        </div>
       </div>
     </ProtectedRoute>
   );

@@ -8,7 +8,7 @@ export default function AdminLayout({
 }) {
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-gray-100">
+      <div className="min-h-screen bg-[var(--background)]">
         <AdminNavigation />
         <main>
           {children}
