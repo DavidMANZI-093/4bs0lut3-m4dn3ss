@@ -69,7 +69,7 @@ export default function PublicTickets() {
     }
 
     const getStatusColor = (status: string) => {
-        return status === 'OPEN' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
+        return status === 'OPEN' ? 'bg-[var(--success)] text-white' : 'bg-[var(--surface)] text-[var(--text-muted)] border border-[var(--border)]'
     }
 
     const formatDate = (dateString: string) => {
@@ -86,13 +86,13 @@ export default function PublicTickets() {
         <div className="space-y-6">
             {/* Header */}
             <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                    <Ticket className="w-6 h-6" />
+                <h2 className="text-2xl font-bold text-[var(--text-primary)] flex items-center gap-2">
+                    <Ticket className="w-6 h-6 text-[var(--primary)]" />
                     Game Ticket Booking
                 </h2>
                 <button
                     onClick={() => setShowCreateForm(true)}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                    className="bg-[var(--primary)] text-white px-4 py-2 rounded-lg hover:bg-[var(--primary-hover)] transition-colors"
                 >
                     Book Game Ticket
                 </button>
@@ -102,25 +102,25 @@ export default function PublicTickets() {
             {showCreateForm && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white rounded-lg p-6 w-full max-w-md">
-                        <h3 className="text-lg font-semibold mb-4">Book Game Ticket</h3>
+                        <h3 className="text-lg font-semibold mb-4 text-[var(--text-primary)]">Book Game Ticket</h3>
                         <div className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Event</label>
+                                <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1">Event</label>
                                 <input
                                     type="text"
                                     value={newTicket.title}
                                     onChange={(e) => setNewTicket({ ...newTicket, title: e.target.value })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-[var(--border)] rounded-lg focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent"
                                     placeholder="Enter game/event name"
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Special Requests</label>
+                                <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1">Special Requests</label>
                                 <textarea
                                     value={newTicket.description}
                                     onChange={(e) => setNewTicket({ ...newTicket, description: e.target.value })}
                                     rows={4}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="w-full px-3 py-2 border border-[var(--border)] rounded-lg focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent"
                                     placeholder="Any special seating requests or notes"
                                 />
                             </div>
@@ -128,13 +128,13 @@ export default function PublicTickets() {
                                 <button
                                     onClick={createTicket}
                                     disabled={isLoading || !newTicket.title.trim() || !newTicket.description.trim()}
-                                    className="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
+                                    className="flex-1 bg-[var(--primary)] text-white py-2 rounded-lg hover:bg-[var(--primary-hover)] disabled:opacity-50 transition-colors"
                                 >
                                     Book Ticket
                                 </button>
                                 <button
                                     onClick={() => setShowCreateForm(false)}
-                                    className="flex-1 bg-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-400 transition-colors"
+                                    className="flex-1 bg-[var(--surface)] text-[var(--text-secondary)] py-2 rounded-lg hover:bg-[var(--pale-dogwood-600)] transition-colors border border-[var(--border)]"
                                 >
                                     Cancel
                                 </button>
@@ -149,25 +149,25 @@ export default function PublicTickets() {
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white rounded-lg p-6 w-full max-w-2xl">
                         <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-lg font-semibold">Ticket Details</h3>
+                            <h3 className="text-lg font-semibold text-[var(--text-primary)]">Ticket Details</h3>
                             <button
                                 onClick={() => setSelectedTicket(null)}
-                                className="text-gray-500 hover:text-gray-700"
+                                className="text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
                             >
                                 <X className="w-4 h-4" />
                             </button>
                         </div>
                         <div className="space-y-4">
                             <div>
-                                <h4 className="font-semibold text-gray-900">{selectedTicket.title}</h4>
+                                <h4 className="font-semibold text-[var(--text-primary)]">{selectedTicket.title}</h4>
                                 <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(selectedTicket.status)}`}>
                                     {selectedTicket.status}
                                 </span>
                             </div>
                             <div>
-                                <p className="text-gray-700">{selectedTicket.description}</p>
+                                <p className="text-[var(--text-secondary)]">{selectedTicket.description}</p>
                             </div>
-                            <div className="text-sm text-gray-500">
+                            <div className="text-sm text-[var(--text-muted)]">
                                 <p>Booked: {formatDate(selectedTicket.createdAt)}</p>
                                 <p>Updated: {formatDate(selectedTicket.updatedAt)}</p>
                             </div>
@@ -178,9 +178,9 @@ export default function PublicTickets() {
 
             {/* My Tickets List */}
             <div className="space-y-3">
-                <h3 className="text-lg font-semibold text-gray-900">My Ticket Bookings</h3>
+                <h3 className="text-lg font-semibold text-[var(--text-primary)]">My Ticket Bookings</h3>
                 {tickets.length === 0 ? (
-                    <div className="text-center py-8 text-gray-500">
+                    <div className="text-center py-8 text-[var(--text-muted)]">
                         No tickets booked yet. Book your first game ticket!
                     </div>
                 ) : (
@@ -188,18 +188,18 @@ export default function PublicTickets() {
                         <div
                             key={ticket.id}
                             onClick={() => setSelectedTicket(ticket)}
-                            className="bg-white p-4 rounded-lg card-shadow border border-gray-200 cursor-pointer hover:border-blue-300 transition-colors"
+                            className="bg-white p-4 rounded-lg card-shadow border border-[var(--border)] cursor-pointer hover:border-[var(--primary)] transition-colors"
                         >
                             <div className="flex items-center justify-between">
                                 <div className="flex-1">
                                     <div className="flex items-center space-x-3">
-                                        <h3 className="font-semibold text-gray-900">{ticket.title}</h3>
+                                        <h3 className="font-semibold text-[var(--text-primary)]">{ticket.title}</h3>
                                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(ticket.status)}`}>
                                             {ticket.status}
                                         </span>
                                     </div>
-                                    <p className="text-gray-600 mt-1 line-clamp-2">{ticket.description}</p>
-                                    <p className="text-sm text-gray-500 mt-2">
+                                    <p className="text-[var(--text-secondary)] mt-1 line-clamp-2">{ticket.description}</p>
+                                    <p className="text-sm text-[var(--text-muted)] mt-2">
                                         Booked {formatDate(ticket.createdAt)}
                                     </p>
                                 </div>

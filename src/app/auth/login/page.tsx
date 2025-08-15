@@ -1,4 +1,5 @@
-import LoginForm from '@/components/auth/LoginForm';
+import LoginForm from '@/components/auth/LoginForm'
+import { Activity } from 'lucide-react';
 
 export default function LoginPage() {
   return (
@@ -6,7 +7,8 @@ export default function LoginPage() {
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            🏀 4bs0lut3-m4dn3ss
+            <Activity className="w-6 h-6 inline mr-2" />
+            4bs0lut3-m4dn3ss
           </h1>
           <p className="text-gray-600">Basketball Team Platform</p>
         </div>

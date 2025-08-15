@@ -102,26 +102,26 @@ export default function AdminScoreboard() {
 
   if (!score) {
     return (
-      <div className="bg-white rounded-lg card-shadow border border-gray-200 p-6">
+      <div className="bg-[var(--surface)] rounded-lg card-shadow border border-[var(--border)] p-6">
         <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded mb-4"></div>
-          <div className="h-32 bg-gray-200 rounded"></div>
+          <div className="h-8 bg-[var(--pale-dogwood-200)] rounded mb-4"></div>
+          <div className="h-32 bg-[var(--pale-dogwood-200)] rounded"></div>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="bg-white rounded-lg card-shadow border border-gray-200 p-6">
+    <div className="bg-white rounded-lg card-shadow border border-[var(--border)] p-6">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-          <Activity className="w-6 h-6" />
+        <h2 className="text-2xl font-bold text-[var(--text-primary)] flex items-center gap-2">
+          <Activity className="w-6 h-6 text-[var(--primary)]" />
           Basketball Scoreboard Admin
         </h2>
         <div className="flex items-center space-x-2">
-          <div className={`w-3 h-3 rounded-full ${isConnected ? 'bg-green-500' : 'bg-red-500'}`}></div>
-          <span className="text-sm text-gray-600">
+          <div className={`w-3 h-3 rounded-full ${isConnected ? 'bg-[var(--success)]' : 'bg-[var(--error)]'}`}></div>
+          <span className="text-sm text-[var(--text-secondary)]">
             {isConnected ? 'Live' : 'Disconnected'}
           </span>
         </div>
@@ -131,28 +131,28 @@ export default function AdminScoreboard() {
       <div className="grid grid-cols-2 gap-8 mb-8">
         {/* Team A */}
         <div className="text-center">
-          <h3 className="text-lg font-semibold text-gray-700 mb-2">Team A</h3>
-          <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
-            <div className="text-6xl font-bold text-blue-600 mb-4">{score.teamA}</div>
+          <h3 className="text-lg font-semibold text-[var(--text-secondary)] mb-2">Team A</h3>
+          <div className="bg-[var(--surface)] border-2 border-[var(--primary)] rounded-lg p-6">
+            <div className="text-6xl font-bold text-[var(--primary)] mb-4">{score.teamA}</div>
             <div className="space-y-2">
               <button
                 onClick={() => updateScore('A', 1)}
                 disabled={isLoading}
-                className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
+                className="w-full bg-[var(--primary)] text-white px-4 py-2 rounded-lg hover:bg-[var(--primary-hover)] disabled:opacity-50 transition-colors"
               >
                 +1
               </button>
               <button
                 onClick={() => updateScore('A', 2)}
                 disabled={isLoading}
-                className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
+                className="w-full bg-[var(--primary)] text-white px-4 py-2 rounded-lg hover:bg-[var(--primary-hover)] disabled:opacity-50 transition-colors"
               >
                 +2
               </button>
               <button
                 onClick={() => updateScore('A', 3)}
                 disabled={isLoading}
-                className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
+                className="w-full bg-[var(--primary)] text-white px-4 py-2 rounded-lg hover:bg-[var(--primary-hover)] disabled:opacity-50 transition-colors"
               >
                 +3
               </button>
@@ -162,28 +162,28 @@ export default function AdminScoreboard() {
 
         {/* Team B */}
         <div className="text-center">
-          <h3 className="text-lg font-semibold text-gray-700 mb-2">Team B</h3>
-          <div className="bg-orange-50 border-2 border-orange-200 rounded-lg p-6">
-            <div className="text-6xl font-bold text-orange-600 mb-4">{score.teamB}</div>
+          <h3 className="text-lg font-semibold text-[var(--text-secondary)] mb-2">Team B</h3>
+          <div className="bg-[var(--surface)] border-2 border-[var(--secondary)] rounded-lg p-6">
+            <div className="text-6xl font-bold text-[var(--secondary)] mb-4">{score.teamB}</div>
             <div className="space-y-2">
               <button
                 onClick={() => updateScore('B', 1)}
                 disabled={isLoading}
-                className="w-full bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 disabled:opacity-50 transition-colors"
+                className="w-full bg-[var(--secondary)] text-white px-4 py-2 rounded-lg hover:bg-[var(--ultra-violet-600)] disabled:opacity-50 transition-colors"
               >
                 +1
               </button>
               <button
                 onClick={() => updateScore('B', 2)}
                 disabled={isLoading}
-                className="w-full bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 disabled:opacity-50 transition-colors"
+                className="w-full bg-[var(--secondary)] text-white px-4 py-2 rounded-lg hover:bg-[var(--ultra-violet-600)] disabled:opacity-50 transition-colors"
               >
                 +2
               </button>
               <button
                 onClick={() => updateScore('B', 3)}
                 disabled={isLoading}
-                className="w-full bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 disabled:opacity-50 transition-colors"
+                className="w-full bg-[var(--secondary)] text-white px-4 py-2 rounded-lg hover:bg-[var(--ultra-violet-600)] disabled:opacity-50 transition-colors"
               >
                 +3
               </button>
@@ -197,21 +197,21 @@ export default function AdminScoreboard() {
         <button
           onClick={resetScore}
           disabled={isLoading}
-          className="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700 disabled:opacity-50 transition-colors"
+          className="bg-[var(--accent)] text-white px-6 py-2 rounded-lg hover:bg-[var(--rose-quartz-400)] disabled:opacity-50 transition-colors"
         >
           Reset Score
         </button>
         <button
           onClick={fetchScore}
           disabled={isLoading}
-          className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 disabled:opacity-50 transition-colors"
+          className="bg-[var(--success)] text-white px-6 py-2 rounded-lg hover:bg-green-700 disabled:opacity-50 transition-colors"
         >
           Refresh
         </button>
       </div>
 
       {/* Last Updated */}
-      <div className="text-center mt-4 text-sm text-gray-500">
+      <div className="text-center mt-4 text-sm text-[var(--text-muted)]">
         Last updated: {new Date(score.updatedAt).toLocaleTimeString()}
       </div>
     </div>

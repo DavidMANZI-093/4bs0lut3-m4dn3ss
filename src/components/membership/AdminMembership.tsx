@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { Star, Check, X } from 'lucide-react'
 
 interface MembershipTier {
   id: string
@@ -133,26 +134,26 @@ export default function AdminMembership() {
   const getTierColor = (tierName: string) => {
     switch (tierName.toLowerCase()) {
       case 'bronze':
-        return 'bg-orange-100 border-orange-300 text-orange-800'
+        return 'bg-[var(--pale-dogwood-900)] border-[var(--pale-dogwood-600)] text-[var(--warning)]'
       case 'silver':
-        return 'bg-gray-100 border-gray-300 text-gray-800'
+        return 'bg-[var(--pale-dogwood-900)] border-[var(--pale-dogwood-300)] text-[var(--text-secondary)]'
       case 'gold':
-        return 'bg-yellow-100 border-yellow-300 text-yellow-800'
+        return 'bg-[var(--pale-dogwood-900)] border-[var(--pale-dogwood-600)] text-[var(--warning)]'
       default:
-        return 'bg-blue-100 border-blue-300 text-blue-800'
+        return 'bg-[var(--space-cadet-900)] border-[var(--space-cadet-700)] text-[var(--primary)]'
     }
   }
 
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
       case 'active':
-        return 'bg-green-100 text-green-800'
+        return 'bg-[var(--isabelline-700)] text-[var(--success)]'
       case 'expired':
-        return 'bg-red-100 text-red-800'
+        return 'bg-[var(--rose-quartz-900)] text-[var(--error)]'
       case 'cancelled':
-        return 'bg-gray-100 text-gray-800'
+        return 'bg-[var(--pale-dogwood-900)] text-[var(--text-secondary)]'
       default:
-        return 'bg-yellow-100 text-yellow-800'
+        return 'bg-[var(--pale-dogwood-900)] text-[var(--warning)]'
     }
   }
 
@@ -183,10 +184,13 @@ export default function AdminMembership() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-gray-900">⭐ Membership Management Admin</h2>
+        <h2 className="text-2xl font-bold text-[var(--text-primary)] flex items-center gap-2">
+          <Star className="w-6 h-6" />
+          Membership Management Admin
+        </h2>
         <button
           onClick={() => setShowCreateTierForm(true)}
-          className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+          className="bg-[var(--success)] text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
         >
           Create Tier
         </button>
@@ -194,28 +198,28 @@ export default function AdminMembership() {
 
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
-          <div className="text-2xl font-bold text-blue-600">{tiers.length}</div>
-          <div className="text-sm text-blue-700">Total Tiers</div>
+        <div className="bg-[var(--space-cadet-900)] border border-[var(--space-cadet-700)] rounded-lg p-4 text-center">
+          <div className="text-2xl font-bold text-[var(--primary)]">{tiers.length}</div>
+          <div className="text-sm text-[var(--text-secondary)]">Total Tiers</div>
         </div>
-        <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
-          <div className="text-2xl font-bold text-green-600">{members.length}</div>
-          <div className="text-sm text-green-700">Total Members</div>
+        <div className="bg-[var(--isabelline-700)] border border-[var(--pale-dogwood-300)] rounded-lg p-4 text-center">
+          <div className="text-2xl font-bold text-[var(--success)]">{members.length}</div>
+          <div className="text-sm text-[var(--text-secondary)]">Total Members</div>
         </div>
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
-          <div className="text-2xl font-bold text-yellow-600">
+        <div className="bg-[var(--pale-dogwood-900)] border border-[var(--pale-dogwood-600)] rounded-lg p-4 text-center">
+          <div className="text-2xl font-bold text-[var(--warning)]">
             {members.filter(m => new Date(m.expiryDate) > new Date() && m.paymentStatus === 'active').length}
           </div>
-          <div className="text-sm text-yellow-700">Active Members</div>
+          <div className="text-sm text-[var(--text-secondary)]">Active Members</div>
         </div>
-        <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 text-center">
-          <div className="text-2xl font-bold text-purple-600">
+        <div className="bg-[var(--ultra-violet-900)] border border-[var(--ultra-violet-700)] rounded-lg p-4 text-center">
+          <div className="text-2xl font-bold text-[var(--ultra-violet)]">
             {formatPrice(members.reduce((sum, m) => {
               const tier = tiers.find(t => t.name === m.tierName)
               return sum + (tier?.price || 0)
             }, 0))}
           </div>
-          <div className="text-sm text-purple-700">Total Revenue</div>
+          <div className="text-sm text-[var(--text-secondary)]">Total Revenue</div>
         </div>
       </div>
 
@@ -226,18 +230,18 @@ export default function AdminMembership() {
             <h3 className="text-lg font-semibold mb-4">Create Membership Tier</h3>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Tier Name</label>
+                <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1">Tier Name</label>
                 <input
                   type="text"
                   value={newTier.name}
                   onChange={(e) => setNewTier({ ...newTier, name: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-[var(--border)] rounded-lg focus:ring-2 focus:ring-[var(--success)] focus:border-transparent"
                   placeholder="e.g., Bronze, Silver, Gold"
                 />
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Price ($)</label>
+                  <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1">Price ($)</label>
                   <input
                     type="number"
                     step="0.01"
@@ -276,7 +280,7 @@ export default function AdminMembership() {
                         onClick={() => removeBenefit(index)}
                         className="text-red-600 hover:text-red-800"
                       >
-                        ✕
+                        <X className="w-4 h-4" />
                       </button>
                     )}
                   </div>
@@ -354,7 +358,7 @@ export default function AdminMembership() {
               <div className="space-y-1">
                 {tier.benefits.map((benefit, index) => (
                   <div key={index} className="flex items-center text-xs text-gray-700">
-                    <span className="text-green-500 mr-1">✓</span>
+                    <Check className="w-3 h-3 text-green-500 mr-1" />
                     {benefit}
                   </div>
                 ))}

@@ -58,7 +58,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       destructive: `
         bg-[var(--error)] text-white 
         hover:bg-red-700 
-        focus:ring-red-500
+        focus:ring-[var(--error)]
         shadow-sm hover:shadow-md
       `
     }

@@ -2,16 +2,17 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { Activity, Ticket, Store, Users, MessageCircle } from 'lucide-react';
 
 export default function PublicNavigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const publicRoutes = [
-    { name: 'Live Scoreboard', href: '/scoreboard', icon: '🏀' },
-    { name: 'Game Tickets', href: '/tickets', icon: '🎫' },
-    { name: 'Team Store', href: '/store', icon: '🛍️' },
-    { name: 'Memberships', href: '/membership', icon: '👥' },
-    { name: 'Live Chat', href: '/chat', icon: '💬' },
+    { name: 'Live Scoreboard', href: '/scoreboard', icon: <Activity className="w-4 h-4" /> },
+    { name: 'Game Tickets', href: '/tickets', icon: <Ticket className="w-4 h-4" /> },
+    { name: 'Team Store', href: '/store', icon: <Store className="w-4 h-4" /> },
+    { name: 'Memberships', href: '/membership', icon: <Users className="w-4 h-4" /> },
+    { name: 'Live Chat', href: '/chat', icon: <MessageCircle className="w-4 h-4" /> },
   ];
 
   return (
@@ -21,7 +22,8 @@ export default function PublicNavigation() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
               <span className="text-2xl font-bold text-orange-600">
-                🏀 4bs0lut3-m4dn3ss
+                <Activity className="w-6 h-6 mr-2" />
+                4bs0lut3-m4dn3ss
               </span>
             </Link>
           </div>

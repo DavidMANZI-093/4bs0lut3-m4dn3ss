@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { Lock } from 'lucide-react'
 import Button from '@/components/common/Button'
 import Card from '@/components/common/Card'
 
@@ -56,14 +57,14 @@ export default function PaymentForm({
     <Card title="Payment Information" className="max-w-md mx-auto">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="text-center mb-6">
-          <div className="text-2xl font-bold text-gray-900">
+          <div className="text-2xl font-bold text-[var(--text-primary)]">
             ${amount.toFixed(2)}
           </div>
-          <div className="text-sm text-gray-600">Total Amount</div>
+          <div className="text-sm text-[var(--text-secondary)]">Total Amount</div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1">
             Card Number
           </label>
           <input
@@ -73,7 +74,7 @@ export default function PaymentForm({
               ...paymentData,
               cardNumber: formatCardNumber(e.target.value)
             })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-[var(--border)] rounded-lg focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent"
             placeholder="1234 5678 9012 3456"
             maxLength={19}
             required
@@ -82,7 +83,7 @@ export default function PaymentForm({
 
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1">
               Expiry Date
             </label>
             <input
@@ -92,14 +93,14 @@ export default function PaymentForm({
                 ...paymentData,
                 expiryDate: formatExpiryDate(e.target.value)
               })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-[var(--border)] rounded-lg focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent"
               placeholder="MM/YY"
               maxLength={5}
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1">
               CVV
             </label>
             <input
@@ -109,7 +110,7 @@ export default function PaymentForm({
                 ...paymentData,
                 cvv: e.target.value.replace(/\D/g, '')
               })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-[var(--border)] rounded-lg focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent"
               placeholder="123"
               maxLength={4}
               required
@@ -118,7 +119,7 @@ export default function PaymentForm({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1">
             Cardholder Name
           </label>
           <input
@@ -128,14 +129,14 @@ export default function PaymentForm({
               ...paymentData,
               name: e.target.value
             })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-[var(--border)] rounded-lg focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent"
             placeholder="John Doe"
             required
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1">
             Email Address
           </label>
           <input
@@ -145,7 +146,7 @@ export default function PaymentForm({
               ...paymentData,
               email: e.target.value
             })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-[var(--border)] rounded-lg focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent"
             placeholder="john@example.com"
             required
           />
@@ -173,8 +174,9 @@ export default function PaymentForm({
         </div>
       </form>
 
-      <div className="mt-4 text-xs text-gray-500 text-center">
-        🔒 Your payment information is secure and encrypted
+      <div className="mt-4 text-xs text-[var(--text-muted)] text-center flex items-center justify-center gap-1">
+        <Lock className="w-3 h-3" />
+        Your payment information is secure and encrypted
       </div>
     </Card>
   )

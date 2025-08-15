@@ -4,23 +4,24 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 import UserProfile from '@/components/auth/UserProfile';
+import { BarChart3, Activity, Ticket, Store, Users, MessageCircle, Monitor } from 'lucide-react';
 
 export default function AdminNavigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user } = useAuth();
 
   const adminRoutes = [
-    { name: 'Dashboard', href: '/admin', icon: '📊' },
-    { name: 'Scoreboard', href: '/admin/scoreboard', icon: '🏀' },
-    { name: 'Tickets', href: '/admin/tickets', icon: '🎫' },
-    { name: 'Store', href: '/admin/store', icon: '🛍️' },
-    { name: 'Membership', href: '/admin/membership', icon: '👥' },
-    { name: 'Chat', href: '/admin/chat', icon: '💬' },
+    { name: 'Dashboard', href: '/admin', icon: <BarChart3 className="w-4 h-4" /> },
+    { name: 'Scoreboard', href: '/admin/scoreboard', icon: <Activity className="w-4 h-4" /> },
+    { name: 'Tickets', href: '/admin/tickets', icon: <Ticket className="w-4 h-4" /> },
+    { name: 'Store', href: '/admin/store', icon: <Store className="w-4 h-4" /> },
+    { name: 'Membership', href: '/admin/membership', icon: <Users className="w-4 h-4" /> },
+    { name: 'Chat', href: '/admin/chat', icon: <MessageCircle className="w-4 h-4" /> },
   ];
 
   // Add developer-only routes
   if (user?.role === 'DEVELOPER') {
-    adminRoutes.push({ name: 'Dev Tools', href: '/admin/dev', icon: '💻' });
+    adminRoutes.push({ name: 'Dev Tools', href: '/admin/dev', icon: <Monitor className="w-4 h-4" /> });
   }
 
   return (
@@ -30,7 +31,8 @@ export default function AdminNavigation() {
           <div className="flex items-center">
             <Link href="/admin" className="flex items-center">
               <span className="text-xl font-bold text-orange-400">
-                🏀 4bs0lut3-m4dn3ss Admin
+                <Activity className="w-5 h-5 mr-2" />
+                4bs0lut3-m4dn3ss Admin
               </span>
             </Link>
           </div>

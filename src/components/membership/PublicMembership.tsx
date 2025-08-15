@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { Star, Check } from 'lucide-react'
 
 interface MembershipTier {
   id: string
@@ -96,13 +97,13 @@ export default function PublicMembership() {
   const getTierColor = (tierName: string) => {
     switch (tierName.toLowerCase()) {
       case 'bronze':
-        return 'bg-orange-100 border-orange-300 text-orange-800'
+        return 'bg-[var(--pale-dogwood-900)] border-[var(--pale-dogwood-600)] text-[var(--warning)]'
       case 'silver':
-        return 'bg-gray-100 border-gray-300 text-gray-800'
+        return 'bg-[var(--pale-dogwood-900)] border-[var(--pale-dogwood-300)] text-[var(--text-secondary)]'
       case 'gold':
-        return 'bg-yellow-100 border-yellow-300 text-yellow-800'
+        return 'bg-[var(--pale-dogwood-900)] border-[var(--pale-dogwood-600)] text-[var(--warning)]'
       default:
-        return 'bg-blue-100 border-blue-300 text-blue-800'
+        return 'bg-[var(--space-cadet-900)] border-[var(--space-cadet-700)] text-[var(--primary)]'
     }
   }
 
@@ -115,16 +116,19 @@ export default function PublicMembership() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">⭐ Fan Membership</h2>
-        <p className="text-gray-600">Join premium fan membership for exclusive benefits and perks</p>
+        <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-2 flex items-center gap-2">
+          <Star className="w-6 h-6" />
+          Fan Membership
+        </h2>
+        <p className="text-[var(--text-secondary)]">Join premium fan membership for exclusive benefits and perks</p>
       </div>
 
       {/* Message */}
       {message && (
         <div className={`p-3 rounded-lg ${
           message.type === 'success' 
-            ? 'bg-green-100 border border-green-300 text-green-700'
-            : 'bg-red-100 border border-red-300 text-red-700'
+            ? 'bg-[var(--isabelline-700)] border border-[var(--pale-dogwood-300)] text-[var(--success)]'
+            : 'bg-[var(--rose-quartz-900)] border border-[var(--rose-quartz-700)] text-[var(--error)]'
         }`}>
           {message.text}
         </div>
@@ -136,7 +140,7 @@ export default function PublicMembership() {
           <div
             key={tier.id}
             className={`bg-white rounded-lg card-shadow border-2 p-6 cursor-pointer transition-all hover:shadow-lg ${
-              selectedTier?.id === tier.id ? 'border-blue-500 ring-2 ring-blue-200' : 'border-gray-200'
+              selectedTier?.id === tier.id ? 'border-[var(--primary)] ring-2 ring-[var(--space-cadet-800)]' : 'border-[var(--border)]'
             }`}
             onClick={() => {
               setSelectedTier(tier)
@@ -147,16 +151,16 @@ export default function PublicMembership() {
               <div className={`inline-block px-3 py-1 rounded-full text-sm font-medium mb-3 ${getTierColor(tier.name)}`}>
                 {tier.name}
               </div>
-              <div className="text-3xl font-bold text-gray-900 mb-2">
+              <div className="text-3xl font-bold text-[var(--text-primary)] mb-2">
                 {formatPrice(tier.price)}
               </div>
-              <div className="text-sm text-gray-600 mb-4">
+              <div className="text-sm text-[var(--text-secondary)] mb-4">
                 per {tier.duration} month{tier.duration > 1 ? 's' : ''}
               </div>
               <div className="space-y-2 text-left">
                 {tier.benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-center text-sm text-gray-700">
-                    <span className="text-green-500 mr-2">✓</span>
+                  <div key={index} className="flex items-center text-sm text-[var(--text-secondary)]">
+                    <Check className="w-4 h-4 text-[var(--success)] mr-2" />
                     {benefit}
                   </div>
                 ))}
@@ -168,44 +172,44 @@ export default function PublicMembership() {
 
       {/* Purchase Form */}
       {selectedTier && (
-        <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-blue-900 mb-4">
+        <div className="bg-[var(--space-cadet-900)] border-2 border-[var(--space-cadet-700)] rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-[var(--primary)] mb-4">
             Purchase {selectedTier.name} Membership
           </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+              <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1">Full Name</label>
               <input
                 type="text"
                 value={membershipForm.name}
                 onChange={(e) => setMembershipForm({ ...membershipForm, name: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-[var(--border)] rounded-lg focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent"
                 placeholder="Enter your full name"
                 maxLength={100}
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+              <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1">Email Address</label>
               <input
                 type="email"
                 value={membershipForm.email}
                 onChange={(e) => setMembershipForm({ ...membershipForm, email: e.target.value })}
-                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent ${
                   membershipForm.email && !validateEmail(membershipForm.email)
-                    ? 'border-red-300'
-                    : 'border-gray-300'
+                    ? 'border-[var(--error)]'
+                    : 'border-[var(--border)]'
                 }`}
                 placeholder="Enter your email address"
               />
               {membershipForm.email && !validateEmail(membershipForm.email) && (
-                <p className="text-red-600 text-sm mt-1">Please enter a valid email address</p>
+                <p className="text-[var(--error)] text-sm mt-1">Please enter a valid email address</p>
               )}
             </div>
           </div>
           
           <div className="flex items-center justify-between">
-            <div className="text-lg font-semibold text-blue-900">
+            <div className="text-lg font-semibold text-[var(--primary)]">
               Total: {formatPrice(selectedTier.price)}
             </div>
             <div className="flex space-x-3">
@@ -214,14 +218,14 @@ export default function PublicMembership() {
                   setSelectedTier(null)
                   setMembershipForm({ name: '', email: '', tierId: '' })
                 }}
-                className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 transition-colors"
+                className="bg-[var(--pale-dogwood-300)] text-[var(--text-secondary)] px-4 py-2 rounded-lg hover:bg-[var(--pale-dogwood-400)] transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={purchaseMembership}
                 disabled={isLoading || !membershipForm.name.trim() || !validateEmail(membershipForm.email)}
-                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
+                className="bg-[var(--primary)] text-white px-6 py-2 rounded-lg hover:bg-[var(--primary-hover)] disabled:opacity-50 transition-colors"
               >
                 {isLoading ? 'Processing...' : 'Purchase Membership'}
               </button>
@@ -231,7 +235,7 @@ export default function PublicMembership() {
       )}
 
       {tiers.length === 0 && (
-        <div className="text-center py-8 text-gray-500">
+        <div className="text-center py-8 text-[var(--text-muted)]">
           No membership tiers available at the moment.
         </div>
       )}

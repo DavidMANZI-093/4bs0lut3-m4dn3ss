@@ -63,26 +63,26 @@ export default function PublicScoreboard() {
 
   if (!score) {
     return (
-      <div className="bg-white rounded-lg card-shadow border border-gray-200 p-6">
+      <div className="bg-[var(--surface)] rounded-lg card-shadow border border-[var(--border)] p-6">
         <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded mb-4"></div>
-          <div className="h-32 bg-gray-200 rounded"></div>
+          <div className="h-8 bg-[var(--pale-dogwood-200)] rounded mb-4"></div>
+          <div className="h-32 bg-[var(--pale-dogwood-200)] rounded"></div>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="bg-white rounded-lg card-shadow border border-gray-200 p-6">
+    <div className="bg-white rounded-lg card-shadow border border-[var(--border)] p-6">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-          <Activity className="w-6 h-6" />
+        <h2 className="text-2xl font-bold text-[var(--text-primary)] flex items-center gap-2">
+          <Activity className="w-6 h-6 text-[var(--primary)]" />
           Live Basketball Scoreboard
         </h2>
         <div className="flex items-center space-x-2">
-          <div className={`w-3 h-3 rounded-full ${isConnected ? 'bg-green-500' : 'bg-red-500'}`}></div>
-          <span className="text-sm text-gray-600">
+          <div className={`w-3 h-3 rounded-full ${isConnected ? 'bg-[var(--success)]' : 'bg-[var(--error)]'}`}></div>
+          <span className="text-sm text-[var(--text-secondary)]">
             {isConnected ? 'Live' : 'Disconnected'}
           </span>
         </div>
@@ -92,23 +92,23 @@ export default function PublicScoreboard() {
       <div className="grid grid-cols-2 gap-8 mb-8">
         {/* Team A */}
         <div className="text-center">
-          <h3 className="text-lg font-semibold text-gray-700 mb-2">Team A</h3>
-          <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
-            <div className="text-6xl font-bold text-blue-600">{score.teamA}</div>
+          <h3 className="text-lg font-semibold text-[var(--text-secondary)] mb-2">Team A</h3>
+          <div className="bg-[var(--surface)] border-2 border-[var(--primary)] rounded-lg p-6">
+            <div className="text-6xl font-bold text-[var(--primary)]">{score.teamA}</div>
           </div>
         </div>
 
         {/* Team B */}
         <div className="text-center">
-          <h3 className="text-lg font-semibold text-gray-700 mb-2">Team B</h3>
-          <div className="bg-orange-50 border-2 border-orange-200 rounded-lg p-6">
-            <div className="text-6xl font-bold text-orange-600">{score.teamB}</div>
+          <h3 className="text-lg font-semibold text-[var(--text-secondary)] mb-2">Team B</h3>
+          <div className="bg-[var(--surface)] border-2 border-[var(--secondary)] rounded-lg p-6">
+            <div className="text-6xl font-bold text-[var(--secondary)]">{score.teamB}</div>
           </div>
         </div>
       </div>
 
       {/* Last Updated */}
-      <div className="text-center text-sm text-gray-500">
+      <div className="text-center text-sm text-[var(--text-muted)]">
         Last updated: {new Date(score.updatedAt).toLocaleTimeString()}
       </div>
     </div>

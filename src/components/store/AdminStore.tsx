@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { Store, X } from 'lucide-react'
 
 interface Product {
   id: string
@@ -132,15 +133,18 @@ export default function AdminStore() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-gray-900">🛍️ Store Management Admin</h2>
+        <h2 className="text-2xl font-bold text-[var(--text-primary)] flex items-center gap-2">
+          <Store className="w-6 h-6" />
+          Store Management Admin
+        </h2>
         <div className="flex space-x-3">
           <button
             onClick={() => setShowCreateForm(true)}
-            className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+            className="bg-[var(--success)] text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
           >
             Add Product
           </button>
-          <div className="text-sm text-gray-600 flex items-center">
+          <div className="text-sm text-[var(--text-secondary)] flex items-center">
             Total Products: {products?.length || 0}
           </div>
         </div>
@@ -149,38 +153,38 @@ export default function AdminStore() {
       {/* Create Product Modal */}
       {showCreateForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
+          <div className="bg-[var(--surface)] rounded-lg p-6 w-full max-w-md">
             <h3 className="text-lg font-semibold mb-4">Add New Product</h3>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Product Name</label>
+                <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1">Product Name</label>
                 <input
                   type="text"
                   value={newProduct.name}
                   onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-[var(--border)] rounded-lg focus:ring-2 focus:ring-[var(--success)] focus:border-transparent"
                   placeholder="Enter product name"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Price ($)</label>
+                <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1">Price ($)</label>
                 <input
                   type="number"
                   step="0.01"
                   min="0"
                   value={newProduct.price}
                   onChange={(e) => setNewProduct({ ...newProduct, price: parseFloat(e.target.value) || 0 })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-[var(--border)] rounded-lg focus:ring-2 focus:ring-[var(--success)] focus:border-transparent"
                   placeholder="0.00"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Image URL (optional)</label>
+                <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1">Image URL (optional)</label>
                 <input
                   type="url"
                   value={newProduct.imageUrl}
                   onChange={(e) => setNewProduct({ ...newProduct, imageUrl: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-[var(--border)] rounded-lg focus:ring-2 focus:ring-[var(--success)] focus:border-transparent"
                   placeholder="https://example.com/image.jpg"
                 />
               </div>
@@ -188,13 +192,13 @@ export default function AdminStore() {
                 <button
                   onClick={createProduct}
                   disabled={isLoading || !newProduct.name.trim() || newProduct.price <= 0}
-                  className="flex-1 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 disabled:opacity-50 transition-colors"
+                  className="flex-1 bg-[var(--success)] text-white py-2 rounded-lg hover:bg-green-700 disabled:opacity-50 transition-colors"
                 >
                   Add Product
                 </button>
                 <button
                   onClick={() => setShowCreateForm(false)}
-                  className="flex-1 bg-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-400 transition-colors"
+                  className="flex-1 bg-[var(--pale-dogwood-300)] text-[var(--text-secondary)] py-2 rounded-lg hover:bg-[var(--pale-dogwood-400)] transition-colors"
                 >
                   Cancel
                 </button>
@@ -207,14 +211,14 @@ export default function AdminStore() {
       {/* Product Details Modal */}
       {selectedProduct && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl">
+          <div className="bg-[var(--surface)] rounded-lg p-6 w-full max-w-2xl">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold">Product Management</h3>
               <button
                 onClick={() => setSelectedProduct(null)}
-                className="text-gray-500 hover:text-gray-700"
+                className="text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
               >
-                ✕
+                <X className="w-4 h-4" />
               </button>
             </div>
             <div className="space-y-4">
@@ -225,11 +229,11 @@ export default function AdminStore() {
                   className="w-24 h-24 object-cover rounded-lg"
                 />
                 <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-xl">{selectedProduct.name}</h4>
-                  <p className="text-2xl font-bold text-green-600 mt-1">
+                  <h4 className="font-semibold text-[var(--text-primary)] text-xl">{selectedProduct.name}</h4>
+                  <p className="text-2xl font-bold text-[var(--success)] mt-1">
                     {formatPrice(selectedProduct.price)}
                   </p>
-                  <p className="text-sm text-gray-500 mt-2">
+                  <p className="text-sm text-[var(--text-muted)] mt-2">
                     Created: {formatDate(selectedProduct.createdAt)}
                   </p>
                 </div>
@@ -238,7 +242,7 @@ export default function AdminStore() {
                 <button
                   onClick={() => deleteProduct(selectedProduct.id)}
                   disabled={isLoading}
-                  className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors"
+                  className="bg-[var(--error)] text-white px-4 py-2 rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors"
                 >
                   Delete Product
                 </button>
@@ -251,33 +255,33 @@ export default function AdminStore() {
       {/* Products Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {(products || []).map((product) => (
-          <div key={product.id} className="bg-white rounded-lg card-shadow border border-gray-200 overflow-hidden">
+          <div key={product.id} className="bg-[var(--surface)] rounded-lg card-shadow border border-[var(--border)] overflow-hidden">
             <img
               src={product.imageUrl || '/placeholder.jpg'}
               alt={product.name}
               className="w-full h-48 object-cover"
             />
             <div className="p-4">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">{product.name}</h3>
+              <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">{product.name}</h3>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-2xl font-bold text-green-600">
+                <span className="text-2xl font-bold text-[var(--success)]">
                   {formatPrice(product.price)}
                 </span>
               </div>
-              <div className="text-xs text-gray-500 mb-3">
+              <div className="text-xs text-[var(--text-muted)] mb-3">
                 Created: {formatDate(product.createdAt)}
               </div>
               <div className="flex space-x-2">
                 <button
                   onClick={() => setSelectedProduct(product)}
-                  className="flex-1 bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm"
+                  className="flex-1 bg-[var(--primary)] text-white px-3 py-2 rounded-lg hover:bg-[var(--primary-hover)] transition-colors text-sm"
                 >
                   Manage
                 </button>
                 <button
                   onClick={() => deleteProduct(product.id)}
                   disabled={isLoading}
-                  className="bg-red-600 text-white px-3 py-2 rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors text-sm"
+                  className="bg-[var(--error)] text-white px-3 py-2 rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors text-sm"
                 >
                   Delete
                 </button>
@@ -289,15 +293,15 @@ export default function AdminStore() {
 
       {(!products || products.length === 0) && (
         <div className="text-center py-8">
-          <div className="text-gray-500">No products yet. Add your first product!</div>
+          <div className="text-[var(--text-muted)]">No products yet. Add your first product!</div>
         </div>
       )}
 
       {/* Current Cart Summary (for admin reference) */}
       {cart && cart.items.length > 0 && (
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-          <h3 className="text-lg font-semibold text-yellow-900 mb-2">Current Cart Activity</h3>
-          <p className="text-yellow-700">
+        <div className="bg-[var(--pale-dogwood-900)] border border-[var(--pale-dogwood-600)] rounded-lg p-4">
+          <h3 className="text-lg font-semibold text-[var(--warning)] mb-2">Current Cart Activity</h3>
+          <p className="text-[var(--text-secondary)]">
             {cart.itemCount} items in cart, Total: {formatPrice(cart.total)}
           </p>
         </div>

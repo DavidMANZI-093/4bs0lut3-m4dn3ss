@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { Ticket, X } from 'lucide-react'
 
 interface Ticket {
     id: string
@@ -74,7 +75,7 @@ export default function AdminTickets() {
     }
 
     const getStatusColor = (status: string) => {
-        return status === 'OPEN' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
+        return status === 'OPEN' ? 'bg-[var(--isabelline-700)] text-[var(--success)]' : 'bg-[var(--pale-dogwood-900)] text-[var(--text-secondary)]'
     }
 
     const formatDate = (dateString: string) => {
@@ -91,8 +92,11 @@ export default function AdminTickets() {
         <div className="space-y-6">
             {/* Header */}
             <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-gray-900">🎫 Ticket Management Admin</h2>
-                <div className="text-sm text-gray-600">
+                <h2 className="text-2xl font-bold text-[var(--text-primary)] flex items-center gap-2">
+                  <Ticket className="w-6 h-6" />
+                  Ticket Management Admin
+                </h2>
+                <div className="text-sm text-[var(--text-secondary)]">
                     Total Tickets: {tickets?.length || 0}
                 </div>
             </div>
@@ -104,8 +108,8 @@ export default function AdminTickets() {
                         key={status}
                         onClick={() => setFilter(status)}
                         className={`px-4 py-2 rounded-lg transition-colors ${filter === status
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                            ? 'bg-[var(--primary)] text-white'
+                            : 'bg-[var(--pale-dogwood-200)] text-[var(--text-secondary)] hover:bg-[var(--pale-dogwood-300)]'
                             }`}
                     >
                         {status} ({status === 'ALL' ? (tickets?.length || 0) : (tickets?.filter(t => t.status === status)?.length || 0)})
@@ -121,22 +125,22 @@ export default function AdminTickets() {
                             <h3 className="text-lg font-semibold">Ticket Management</h3>
                             <button
                                 onClick={() => setSelectedTicket(null)}
-                                className="text-gray-500 hover:text-gray-700"
+                                className="text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
                             >
-                                ✕
+                                <X className="w-4 h-4" />
                             </button>
                         </div>
                         <div className="space-y-4">
                             <div>
-                                <h4 className="font-semibold text-gray-900">{selectedTicket.title}</h4>
+                                <h4 className="font-semibold text-[var(--text-primary)]">{selectedTicket.title}</h4>
                                 <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(selectedTicket.status)}`}>
                                     {selectedTicket.status}
                                 </span>
                             </div>
                             <div>
-                                <p className="text-gray-700">{selectedTicket.description}</p>
+                                <p className="text-[var(--text-secondary)]">{selectedTicket.description}</p>
                             </div>
-                            <div className="text-sm text-gray-500">
+                            <div className="text-sm text-[var(--text-muted)]">
                                 <p>Created: {formatDate(selectedTicket.createdAt)}</p>
                                 <p>Updated: {formatDate(selectedTicket.updatedAt)}</p>
                             </div>
@@ -145,8 +149,8 @@ export default function AdminTickets() {
                                     onClick={() => updateTicketStatus(selectedTicket.id, selectedTicket.status === 'OPEN' ? 'CLOSED' : 'OPEN')}
                                     disabled={isLoading}
                                     className={`px-4 py-2 rounded-lg transition-colors ${selectedTicket.status === 'OPEN'
-                                        ? 'bg-red-600 text-white hover:bg-red-700'
-                                        : 'bg-green-600 text-white hover:bg-green-700'
+                                        ? 'bg-[var(--error)] text-white hover:bg-red-700'
+                                        : 'bg-[var(--success)] text-white hover:bg-green-700'
                                         } disabled:opacity-50`}
                                 >
                                     {selectedTicket.status === 'OPEN' ? 'Close Ticket' : 'Reopen Ticket'}
@@ -160,7 +164,7 @@ export default function AdminTickets() {
             {/* Tickets List */}
             <div className="space-y-3">
                 {filteredTickets.length === 0 ? (
-                    <div className="text-center py-8 text-gray-500">
+                    <div className="text-center py-8 text-[var(--text-muted)]">
                         No tickets found for the selected filter.
                     </div>
                 ) : (
@@ -168,18 +172,18 @@ export default function AdminTickets() {
                         <div
                             key={ticket.id}
                             onClick={() => setSelectedTicket(ticket)}
-                            className="bg-white p-4 rounded-lg card-shadow border border-gray-200 cursor-pointer hover:border-blue-300 transition-colors"
+                            className="bg-[var(--surface)] p-4 rounded-lg card-shadow border border-[var(--border)] cursor-pointer hover:border-[var(--primary)] transition-colors"
                         >
                             <div className="flex items-center justify-between">
                                 <div className="flex-1">
                                     <div className="flex items-center space-x-3">
-                                        <h3 className="font-semibold text-gray-900">{ticket.title}</h3>
+                                        <h3 className="font-semibold text-[var(--text-primary)]">{ticket.title}</h3>
                                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(ticket.status)}`}>
                                             {ticket.status}
                                         </span>
                                     </div>
-                                    <p className="text-gray-600 mt-1 line-clamp-2">{ticket.description}</p>
-                                    <p className="text-sm text-gray-500 mt-2">
+                                    <p className="text-[var(--text-secondary)] mt-1 line-clamp-2">{ticket.description}</p>
+                                    <p className="text-sm text-[var(--text-muted)] mt-2">
                                         Created {formatDate(ticket.createdAt)}
                                     </p>
                                 </div>
@@ -191,8 +195,8 @@ export default function AdminTickets() {
                                         }}
                                         disabled={isLoading}
                                         className={`px-3 py-1 rounded text-sm transition-colors ${ticket.status === 'OPEN'
-                                            ? 'bg-red-100 text-red-700 hover:bg-red-200'
-                                            : 'bg-green-100 text-green-700 hover:bg-green-200'
+                                            ? 'bg-[var(--rose-quartz-900)] text-[var(--error)] hover:bg-[var(--rose-quartz-800)]'
+                                            : 'bg-[var(--isabelline-700)] text-[var(--success)] hover:bg-[var(--isabelline-600)]'
                                             } disabled:opacity-50`}
                                     >
                                         {ticket.status === 'OPEN' ? 'Close' : 'Reopen'}

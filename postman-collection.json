@@ -13,7 +13,7 @@
   ],
   "item": [
     {
-      "name": "🎫 Ticketing System",
+      "name": "Ticketing System",
       "item": [
         {
           "name": "Get All Tickets",
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "name": "🏀 Basketball Scoreboard",
+      "name": "Basketball Scoreboard",
       "item": [
         {
           "name": "Get Current Score",
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "name": "🛍️ E-commerce",
+      "name": "E-commerce",
       "item": [
         {
           "name": "Get All Products",
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "name": "📧 Subscription System",
+      "name": "Subscription System",
       "item": [
         {
           "name": "Subscribe Email",

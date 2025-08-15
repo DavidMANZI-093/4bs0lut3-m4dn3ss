@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useAuth } from '@/contexts/AuthContext';
+import { useAuth } from '@/contexts/AuthContext'
+import { User, Monitor } from 'lucide-react';
 
 interface UserProfileProps {
   showFullProfile?: boolean;
@@ -24,11 +25,11 @@ export default function UserProfile({ showFullProfile = false, className = '' }:
   const getRoleIcon = (role: string) => {
     switch (role) {
       case 'ADMIN':
-        return '👤';
+        return <User className="w-4 h-4" />;
       case 'DEVELOPER':
-        return '💻';
+        return <Monitor className="w-4 h-4" />;
       default:
-        return '👤';
+        return <User className="w-4 h-4" />;
     }
   };
 

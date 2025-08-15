@@ -3,6 +3,7 @@
 import React, { ReactNode } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import LoginForm from './LoginForm';
+import { ShieldX } from 'lucide-react';
 
 interface ProtectedRouteProps {
   children: ReactNode;
@@ -40,7 +41,9 @@ export default function ProtectedRoute({
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-6 text-center">
-          <div className="text-red-500 text-6xl mb-4">🚫</div>
+          <div className="text-red-500 text-6xl mb-4">
+            <ShieldX className="w-16 h-16 mx-auto" />
+          </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Access Denied</h2>
           <p className="text-gray-600 mb-4">
             You need {requiredRole} role to access this page.

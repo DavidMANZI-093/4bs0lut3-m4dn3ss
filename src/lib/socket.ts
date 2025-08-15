@@ -15,11 +15,11 @@ export function initializeSocket(httpServer: HTTPServer) {
   })
 
   io.on('connection', (socket) => {
-    console.log(`🔌 Client connected: ${socket.id}`)
+    console.log(`Client connected: ${socket.id}`)
 
     // Handle user joining chat
     socket.on('user:join', (username) => {
-      console.log(`👋 ${username} joined the chat`)
+      console.log(`${username} joined the chat`)
       socket.broadcast.emit('message:broadcast', {
         id: `system-${Date.now()}`,
         sender: 'System',
@@ -30,7 +30,7 @@ export function initializeSocket(httpServer: HTTPServer) {
 
     // Handle user leaving chat
     socket.on('user:leave', (username) => {
-      console.log(`👋 ${username} left the chat`)
+      console.log(`${username} left the chat`)
       socket.broadcast.emit('message:broadcast', {
         id: `system-${Date.now()}`,
         sender: 'System',
@@ -55,7 +55,7 @@ export function initializeSocket(httpServer: HTTPServer) {
 
         // Broadcast to all connected clients
         io.emit('message:broadcast', message)
-        console.log(`💬 Message from ${message.sender}: ${message.content}`)
+        console.log(`Message from ${message.sender}: ${message.content}`)
       } catch (error) {
         console.error('Error handling message:', error)
       }
@@ -63,7 +63,7 @@ export function initializeSocket(httpServer: HTTPServer) {
 
     // Handle disconnection
     socket.on('disconnect', () => {
-      console.log(`🔌 Client disconnected: ${socket.id}`)
+      console.log(`Client disconnected: ${socket.id}`)
     })
   })
 
@@ -73,11 +73,11 @@ export function initializeSocket(httpServer: HTTPServer) {
 // Helper function to broadcast score updates
 export async function broadcastScoreUpdate(io: SocketIOServer, score: any) {
   io.emit('score:update', score)
-  console.log(`🏀 Score update broadcasted: Team A: ${score.teamA}, Team B: ${score.teamB}`)
+  console.log(`Score update broadcasted: Team A: ${score.teamA}, Team B: ${score.teamB}`)
 }
 
 // Helper function to broadcast score reset
 export async function broadcastScoreReset(io: SocketIOServer, score: any) {
   io.emit('score:reset', score)
-  console.log(`🏀 Score reset broadcasted: 0-0`)
+  console.log(`Score reset broadcasted: 0-0`)
 }
