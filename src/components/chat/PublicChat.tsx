@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { io, Socket } from 'socket.io-client'
 import { MessageCircle } from 'lucide-react'
 import YouTubePlayer from '@/components/livestream/YouTubePlayer'
-import { extractYouTubeId } from '@/app/api/livestream/route'
+import { extractYouTubeId } from '@/lib/utils'
 
 interface Message {
   id: string

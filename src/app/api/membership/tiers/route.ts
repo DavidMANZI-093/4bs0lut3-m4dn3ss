@@ -25,11 +25,11 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, price, description, benefits, isPopular } = body;
+    const { name, price, duration, description, benefits, isPopular } = body;
 
-    if (!name || !price || !description || !benefits) {
+    if (!name || !price || !duration || !description || !benefits) {
       return NextResponse.json(
-        { success: false, error: 'Name, price, description, and benefits are required' },
+        { success: false, error: 'Name, price, duration, description, and benefits are required' },
         { status: 400 }
       );
     }
@@ -38,6 +38,7 @@ export async function POST(request: NextRequest) {
       data: {
         name,
         price: parseFloat(price),
+        duration: parseInt(duration),
         description,
         benefits,
         isPopular: isPopular || false

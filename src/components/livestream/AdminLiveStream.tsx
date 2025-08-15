@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Play, Square, Settings, ExternalLink } from 'lucide-react'
 import YouTubePlayer from './YouTubePlayer'
-import { extractYouTubeId } from '@/app/api/livestream/route'
+import { extractYouTubeId } from '@/lib/utils'
 
 interface LiveStream {
   id: string

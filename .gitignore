@@ -21,10 +21,14 @@ dist/
 .next/app-build-manifest.json
 
 # Environment variables
+.env*
 .env
 .env.local
+.env.development
 .env.development.local
+.env.test
 .env.test.local
+.env.staging
 .env.production.local
 
 # Vercel
@@ -170,3 +174,15 @@ coverage/
 **/public/sw.js.map
 **/public/workbox-*.js.map
 **/public/worker-*.js.map
+
+# Compiler/Build artifacts
+.swc/
+.swc
+
+# Development tools
+.kiro/
+.kiro
+
+# Build artifacts
+.artifacts/
+.artifacts

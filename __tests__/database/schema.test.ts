@@ -52,8 +52,7 @@ describe('Database Schema & Integrity', () => {
       prisma.cartItem.create({
         data: {
           productId: 'non-existent-id',
-          quantity: 1,
-          userId: 'non-existent-user'
+          quantity: 1
         }
       })
     ).rejects.toThrow()

@@ -42,6 +42,17 @@ export function generateId(): string {
   return Math.random().toString(36).substring(2) + Date.now().toString(36)
 }
 
+// YouTube helper functions
+export function extractYouTubeId(url: string): string | null {
+  const match = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)
+  return match ? match[1] : null
+}
+
+export function isValidYouTubeUrl(url: string): boolean {
+  const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/(watch\?v=|embed\/)|youtu\.be\/)[\w-]+/
+  return youtubeRegex.test(url)
+}
+
 // Error handling wrapper for API routes
 export function withErrorHandling<T extends any[], R>(
   handler: (...args: T) => Promise<R>

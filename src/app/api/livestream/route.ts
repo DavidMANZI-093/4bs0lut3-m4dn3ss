@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { isValidYouTubeUrl } from '@/lib/utils'
 
 // GET /api/livestream - Get current live stream
 export async function GET() {
@@ -84,14 +85,3 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Helper function to validate YouTube URLs
-function isValidYouTubeUrl(url: string): boolean {
-  const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/(watch\?v=|embed\/)|youtu\.be\/)[\w-]+/
-  return youtubeRegex.test(url)
-}
-
-// Helper function to extract YouTube video ID
-export function extractYouTubeId(url: string): string | null {
-  const match = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)
-  return match ? match[1] : null
-}

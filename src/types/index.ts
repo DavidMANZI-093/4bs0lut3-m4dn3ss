@@ -30,6 +30,12 @@ export interface SocketEvents {
   'message:broadcast': (message: Message) => void
   'user:join': (username: string) => void
   'user:leave': (username: string) => void
+  
+  // Live Stream Stats
+  'viewer-count': (count: number) => void
+  'message-count': (count: number) => void
+  'stats': (stats: { viewerCount: number; messageCount: number }) => void
+  'new-message': () => void
 }
 
 // Re-export Prisma types

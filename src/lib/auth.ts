@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 export interface UserSession {
   id: string;
   email: string;
-  role: 'ADMIN' | 'DEVELOPER';
+  role: 'ADMIN' | 'DEVELOPER' | 'USER';
   createdAt: Date;
   expiresAt: Date;
   lastActivity: Date;
