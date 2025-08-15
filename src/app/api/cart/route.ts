@@ -1,3 +1,4 @@
+import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { successResponse, withErrorHandling } from '@/lib/utils'
 import { calculateCartTotal } from '@/lib/utils'
@@ -17,11 +18,15 @@ export const GET = withErrorHandling(async () => {
   const total = calculateCartTotal(cartItems)
   const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0)
 
-  const cartSummary: CartSummary = {
+  const cartSummary = {
     items: cartItems,
     total,
     itemCount
   }
 
-  return successResponse(cartSummary, `Cart contains ${itemCount} items`)
+  return NextResponse.json({
+    success: true,
+    data: cartSummary,
+    message: `Cart contains ${itemCount} items`
+  })
 })

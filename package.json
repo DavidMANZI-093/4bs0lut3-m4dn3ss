@@ -15,6 +15,14 @@
     "db:reset": "prisma migrate reset --force",
     "test": "jest",
     "test:watch": "jest --watch",
+    "test:unit": "jest __tests__/lib --verbose",
+    "test:auth": "jest __tests__/lib/auth.test.ts --verbose",
+    "test:validation": "jest __tests__/lib/validation.test.ts --verbose",
+    "test:database": "jest __tests__/database --verbose",
+    "test:api": "jest __tests__/api --verbose --testTimeout=10000",
+    "test:integration": "jest __tests__/integration --verbose --testTimeout=15000",
+    "test:coverage": "jest --coverage",
+    "test:all": "jest --verbose --testTimeout=10000",
     "socket": "tsx socket-server.ts"
   },
   "dependencies": {

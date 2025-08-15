@@ -124,6 +124,7 @@ model Session {
 enum UserRole {
   ADMIN
   DEVELOPER
+  USER
 }
 
 // 7. Enhanced Membership System

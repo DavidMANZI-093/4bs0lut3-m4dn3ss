@@ -31,17 +31,7 @@ export async function GET() {
 
     return NextResponse.json({
       success: true,
-      data: {
-        members: transformedMembers,
-        pagination: {
-          page: 1,
-          limit: transformedMembers.length,
-          totalCount: transformedMembers.length,
-          totalPages: 1,
-          hasNextPage: false,
-          hasPrevPage: false
-        }
-      }
+      data: transformedMembers
     });
   } catch (error) {
     console.error('Error fetching members:', error);

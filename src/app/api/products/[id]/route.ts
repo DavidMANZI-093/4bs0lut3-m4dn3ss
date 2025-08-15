@@ -82,7 +82,7 @@ export async function PATCH(
     const params = await context.params;
     const { id } = params;
     const body = await request.json();
-    const { name, price, imageUrl } = body;
+    const { name, price, imageUrl, description, inventory } = body;
 
     // Check if product exists
     const existingProduct = await prisma.product.findUnique({
@@ -102,7 +102,9 @@ export async function PATCH(
       data: {
         ...(name && { name }),
         ...(price && { price: parseFloat(price) }),
-        ...(imageUrl !== undefined && { imageUrl: imageUrl || null })
+        ...(imageUrl !== undefined && { imageUrl: imageUrl || null }),
+        ...(description !== undefined && { description: description || null }),
+        ...(inventory !== undefined && { inventory: parseInt(inventory) || 0 })
       }
     });
 
@@ -117,4 +119,12 @@ export async function PATCH(
       { status: 500 }
     );
   }
+}
+
+// PUT /api/products/[id] - Replace product (alias for PATCH)
+export async function PUT(
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
+  return PATCH(request, context);
 }

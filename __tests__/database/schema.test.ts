@@ -1,11 +1,157 @@
-import { describe, it, expect } from '@jest/globals'
+import { describe, it, expect, beforeAll, afterAll } from '@jest/globals'
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-describe('Enhanced Database Schema', () => {
+describe('Database Schema & Integrity', () => {
+  beforeAll(async () => {
+    // Ensure database connection
+    await prisma.$connect()
+  })
+
   afterAll(async () => {
     await prisma.$disconnect()
+  })
+
+  it('should connect to database', async () => {
+    const result = await prisma.$queryRaw`SELECT 1 as test`
+    expect(result).toBeDefined()
+  })
+
+  it('should have all required tables', async () => {
+    const tables = await prisma.$queryRaw`
+      SELECT table_name 
+      FROM information_schema.tables 
+      WHERE table_schema = 'public'
+    `
+    
+    const tableNames = (tables as any[]).map(t => t.table_name)
+    
+    // Core system tables
+    expect(tableNames).toContain('users')
+    expect(tableNames).toContain('tickets')
+    expect(tableNames).toContain('products')
+    expect(tableNames).toContain('cart_items')
+    expect(tableNames).toContain('subscribers')
+    expect(tableNames).toContain('messages')
+    expect(tableNames).toContain('scores')
+    
+    // Enhanced system tables
+    expect(tableNames).toContain('membership_tiers')
+    expect(tableNames).toContain('members')
+    expect(tableNames).toContain('games')
+    expect(tableNames).toContain('ticket_types')
+    expect(tableNames).toContain('payments')
+    expect(tableNames).toContain('audit_logs')
+    expect(tableNames).toContain('live_streams')
+  })
+
+  it('should enforce foreign key constraints', async () => {
+    // This should fail due to foreign key constraint
+    await expect(
+      prisma.cartItem.create({
+        data: {
+          productId: 'non-existent-id',
+          quantity: 1,
+          userId: 'non-existent-user'
+        }
+      })
+    ).rejects.toThrow()
+  })
+
+  it('should validate required fields', async () => {
+    // This should fail due to missing required fields
+    await expect(
+      prisma.user.create({
+        data: {
+          // Missing required email field
+          role: 'USER'
+        } as any
+      })
+    ).rejects.toThrow()
+  })
+
+  it('should validate enum constraints', async () => {
+    // Test user role enum
+    await expect(
+      prisma.user.create({
+        data: {
+          email: 'test@example.com',
+          passwordHash: 'hashed',
+          role: 'INVALID_ROLE' as any
+        }
+      })
+    ).rejects.toThrow()
+  })
+
+  it('should handle unique constraints', async () => {
+    const testEmail = `unique-test-${Date.now()}@example.com`
+    
+    // First user should succeed
+    const user1 = await prisma.user.create({
+      data: {
+        email: testEmail,
+        passwordHash: 'hashed',
+        role: 'USER'
+      }
+    })
+    expect(user1.id).toBeDefined()
+
+    // Second user with same email should fail
+    await expect(
+      prisma.user.create({
+        data: {
+          email: testEmail,
+          passwordHash: 'hashed2',
+          role: 'USER'
+        }
+      })
+    ).rejects.toThrow()
+
+    // Cleanup
+    await prisma.user.delete({ where: { id: user1.id } })
+  })
+
+  it('should validate data relationships', async () => {
+    // Test that membership tier relationships work
+    const tiers = await prisma.membershipTier.findMany({
+      include: {
+        members: true
+      }
+    })
+    
+    expect(Array.isArray(tiers)).toBe(true)
+    tiers.forEach(tier => {
+      expect(tier.name).toBeDefined()
+      expect(tier.price).toBeGreaterThan(0)
+      expect(Array.isArray(tier.members)).toBe(true)
+    })
+  })
+
+  it('should validate live stream constraints', async () => {
+    const streams = await prisma.liveStream.findMany()
+    
+    streams.forEach(stream => {
+      if (stream.youtubeUrl) {
+        expect(typeof stream.youtubeUrl).toBe('string')
+      }
+      expect(typeof stream.isActive).toBe('boolean')
+      expect(stream.createdAt).toBeInstanceOf(Date)
+      expect(stream.updatedAt).toBeInstanceOf(Date)
+    })
+  })
+
+  it('should validate audit log structure', async () => {
+    const logs = await prisma.auditLog.findMany({
+      take: 5,
+      orderBy: { createdAt: 'desc' }
+    })
+    
+    logs.forEach(log => {
+      expect(log.action).toBeDefined()
+      expect(typeof log.action).toBe('string')
+      expect(log.createdAt).toBeInstanceOf(Date)
+    })
   })
 
   it('should have enhanced user table with new fields', async () => {

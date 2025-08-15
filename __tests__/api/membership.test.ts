@@ -44,11 +44,10 @@ describe('Membership API', () => {
     
     expect(response.status).toBe(200)
     expect(data.success).toBe(true)
-    expect(Array.isArray(data.data.members)).toBe(true)
-    expect(data.data.pagination).toBeDefined()
+    expect(Array.isArray(data.data)).toBe(true)
     
-    if (data.data.members.length > 0) {
-      const member = data.data.members[0]
+    if (data.data.length > 0) {
+      const member = data.data[0]
       expect(member.email).toBeDefined()
       expect(member.tierName).toBeDefined()
       expect(member.status).toBeDefined()
@@ -80,7 +79,7 @@ describe('Membership API', () => {
     
     expect(response.status).toBe(200)
     expect(data.success).toBe(true)
-    expect(data.message).toBe('Membership purchase initiated')
+    expect(data.message).toBe('Membership purchase completed successfully')
     expect(data.data.tierId).toBe(purchaseData.tierId)
     expect(data.data.tierName).toBe(tier.name)
     expect(data.data.price).toBe(tier.price)

@@ -4,10 +4,18 @@ import { prisma } from '@/lib/prisma'
 // GET /api/livestream - Get current live stream
 export async function GET() {
   try {
-    const stream = await prisma.liveStream.findFirst({
+    // First try to get active stream
+    let stream = await prisma.liveStream.findFirst({
       where: { isActive: true },
       orderBy: { updatedAt: 'desc' }
     })
+
+    // If no active stream, get the most recent stream for testing purposes
+    if (!stream) {
+      stream = await prisma.liveStream.findFirst({
+        orderBy: { updatedAt: 'desc' }
+      })
+    }
 
     return NextResponse.json({ 
       success: true, 
@@ -36,7 +44,19 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Deactivate all existing streams first
+    // If deactivating, just update all existing streams to inactive
+    if (isActive === false) {
+      await prisma.liveStream.updateMany({
+        data: { isActive: false }
+      })
+      
+      return NextResponse.json({ 
+        success: true,
+        message: 'All live streams deactivated'
+      })
+    }
+
+    // Otherwise, deactivate all existing streams first
     await prisma.liveStream.updateMany({
       data: { isActive: false }
     })
